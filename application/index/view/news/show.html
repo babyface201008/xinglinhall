@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>新闻中心</title>
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/base.css" type="text/css" />
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/index.css" type="text/css" />
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/all.css" type="text/css" />
+    <script type="text/javascript"src="__INDEX__js/jquery.min.js"></script>
+</head>
+<body>
+{include file="public/head" /}
+<div class="pro_banner">
+    {foreach $navData as $key =>$item}
+    {eq name="item.url" value="$controller"}
+    <a href="#" style="background:url(__PUBLIC__upload/manage/ad/{$item.ad_src}) no-repeat center;display:block;"></a>
+    {/eq}
+    {/foreach}
+</div>
+
+<!--产品服务-->
+<div class="wh clear">
+
+    <div class="news_min">
+        <div class="news_show">
+            <h2 class="news_show_title">{$NewsDetail.title}</h2>
+            {$NewsDetail.contant}
+        </div>
+    </div>
+
+
+</div>
+
+<div class="box_bor clear"></div>
+<!--底部导航列表-->
+{include file="public/foot" /}
+</body>
+
+<script type="text/javascript"src="__INDEX__js/slidelf.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".fl-pic").slidelf({
+            "prev":"left-arrow",
+            "next":"right-arrow",
+            "speed":1000
+        });
+    });
+</script>
+<script src="__INDEX__js/slider.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var bannerSlider = new Slider($('#banner_tabs'), {
+            time: 5000,
+            delay: 400,
+            event: 'hover',
+            auto: true,
+            mode: 'fade',
+            controller: $('#bannerCtrl'),
+            activeControllerCls: 'active'
+        });
+        $('#banner_tabs .flex-prev').click(function() {
+            bannerSlider.prev()
+        });
+        $('#banner_tabs .flex-next').click(function() {
+            bannerSlider.next()
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#nav li").hover(function(){
+            $(this).find("div").slideDown("slow");
+        },function(){
+            $(this).find("div").slideUp("fast");
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>文章添加--layui后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+
+	<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/ueditor.all.min.js"> </script>
+	<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/icon1.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/main.css" media="all" />
+</head>
+<style>
+	#image img{
+		max-height:50px;
+		margin-left: 30px;
+	}
+</style>
+<body class="childrenBody">
+	<form class="layui-form" style="width: 80%; height: 100%;">
+		<div class="layui-form-item">
+			<label class="layui-form-label">新闻标题</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input newsName" name="title" lay-verify="required" placeholder="请输入文章标题">
+			</div>
+		</div>
+		<div class="layui-form-item">
+        	<label class="layui-form-label">新闻分类</label>
+			<div class="layui-input-block">
+				<select name="pid" lay-verify="required" class="pid"  lay-search="" placeholder="直接选择或搜索选择">
+					<option value="">请选择</option>
+				</select>
+			</div>
+    	</div>
+
+			<div class="layui-form-item">
+				<label class="layui-form-label">新闻封面</label>
+				<div class="layui-input-block">
+					<input type="file" class="layui-upload-file image" name="image"    placeholder="新闻封面">
+					<input type="hidden" id="imageURL" name="imageURL" value="">
+					<span id="image"></span>
+				</div>
+			</div>
+			<!--<div class="layui-inline">
+				<label class="layui-form-label">浏览权限</label>
+				<div class="layui-input-inline">
+					<select name="browseLook" class="newsLook" lay-filter="browseLook">
+				        <option value="0">开放浏览</option>
+				        <option value="1">会员浏览</option>
+				    </select>
+				</div>
+			</div>-->
+
+		<!--<div class="layui-form-item">
+			<label class="layui-form-label">关键字</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" placeholder="请输入文章关键字">
+			</div>
+		</div>-->
+		<div class="layui-form-item">
+			<label class="layui-form-label">内容摘要</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入内容摘要" name="intro" class="layui-textarea"></textarea>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">自定义属性</label>
+				<div class="layui-input-block">
+					<input type="checkbox" name="tuijian" class="isTuijian"  title="推荐">
+					<input type="checkbox" name="show" class="isShow" checked  title="展示">
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">文章作者</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input newsAuthor" name="author" placeholder="请输入文章作者" value="{$Think.session.admin.realname}">
+					</div>
+				</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">发布时间</label>
+				<div class="layui-input-inline">
+					<input type="text" class="layui-input newsTime" lay-verify="date" name="time" onclick="layui.laydate({elem:this})" value='{$createtime}'>
+				</div>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">新闻内容</label>
+			<div class="layui-input-block">
+					<script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="addNews">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+	</form>
+
+	<script type="text/javascript" >
+        var saveNewsJSON =  "{:url('manage/News/save')}";
+        var imageURL='__PUBLIC__'+'upload/manage/';
+        var layedit_UPLOAD_URL='{:url("base/uploadimg")}';
+		var getNewscategoryListJson='{:url("Newscategory/getNewscategoryListJson")}';
+	</script>
+	<script type="text/javascript">
+
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		var ue = UE.getEditor('editor',{
+			textarea : 'contant'
+		});
+
+
+
+
+	</script>
+	<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+	<script type="text/javascript" src="__MANAGE__js/admin/newsAdd.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal"
+            aria-hidden="true">×
+    </button>
+    <h4 class="modal-title" id="myModalLabel">
+        修改角色
+    </h4>
+</div>
+<form id="admingroup-edit"  class="bs-example bs-example-form layui-form" role="form">
+    <input type="hidden" name="op" value="edit">
+    <input type="hidden" name="groupid" value="{$group.groupid}">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">角色名称：</label>
+                <input type="text" class="col-sm-8 Groupname" lay-verify="required" placeholder="角色名称" name="groupname" value="{$group.groupname}">
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">角色描述：</label>
+                <input type="text" class="col-sm-8 icon" lay-verify="required" placeholder="角色描述" name="desc" value="{$group.desc}">
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label no-padding-right">账号状态：</label>
+                <div class="col-xs-3">
+                    <label>
+                        <input name="status" class="ace ace-switch ace-switch-4 btn-empty" type="checkbox" {if $group.status eq 1 }checked{/if}>
+                        <span class="lbl"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style='padding:8px; color: red'>
+        权限列表
+    </div>
+    <table class='setmenu-table' cellpadding="5" class='d' style='border:1px solid #ededed;width:100%' >
+        {foreach name="$menu" item="v"}
+        <tr>
+            <td>
+                <span><input id="menu{$v.menuid}" 	{if condition="in_array($v.menuid,$menurole)" } checked {/if} name='menuids[]'  type="checkbox" value="{$v.menuid}" ><label for="menu{$v.menuid}" >{$v.menuname}</label></span>
+            </td>
+            <td>
+                <ul class='menu_list_ul' style='list-style:none'>
+                    {if condition="!empty($v['children'])"}
+                    {foreach name="$v['children']" key=key item="val" }
+                    <li><input id="menu{$val.menuid}" name='menuids[]' {if condition="in_array($val.menuid,$menurole)"} checked {/if} value="{$val.menuid}" type="checkbox"><label for="menu{$val.menuid}">{$val.menuname}</label></li>
+                    {/foreach}
+                    {/if}
+
+                </ul>
+            </td>
+        </tr>
+        {/foreach}
+    </table>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+                data-dismiss="modal">关闭
+        </button>
+        <button type="button" class="btn btn-primary" data-msg="add" lay-submit lay-filter="admingroupform" onclick="admingroupsave(this)">
+            提交数据
+        </button>
+    </div>
+</form>
+
+<script>
+    $('.setmenu-table label').css({cursor:'pointer'})//设置label鼠标手指
+    $('.setmenu-table td').css({padding:'5px',margin:0});	//设置td的内,外边距
+    //设置li样式
+    setTimeout(function(){
+        var wid = $('.setmenu-table').width();
+        $('.menu_list_ul').find('li').css({
+            float:'left',
+            width:wid+'px'
+        });
+    },1);
+    $('.setmenu-table').find('tr').each(function(){
+        var $t = $(this);
+        $t.find('ul').css({padding:0,margin:0})//设置ul内,外边距
+
+        //设置每行第一个td样式
+        var tdboss = $t.children('td:eq(0)').css({
+            borderRight:"1px solid #ededed",
+            width:'100px',
+        });
+        var tdnext = $t.children('td:eq(1)');	//第二个td
+        var inputBoss = this.getElementsByTagName('input')[0];//第一个td的input
+        var inputNext = tdnext.find('input');//第二个td里面的input
+        // changeChecked();//初始化checkbox选中状态
+        inputNext.each(function(){
+            this.disabled = !inputBoss.checked;//可选
+            // this.checked = inputBoss.checked;
+        });
+
+        //父类菜单 单击改变状态  选中/不选中
+        tdboss.find('span').click(function(){
+            changeChecked();
+        });
+
+        //改变checkbox选中状态
+        function changeChecked(){
+            inputNext.each(function(){
+                this.disabled = !inputBoss.checked;//可选
+                this.checked = inputBoss.checked;
+            });
+        }
+    });
+</script>

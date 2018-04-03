@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>首页--后台管理模板</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/main.css" media="all" />
+</head>
+<body class="childrenBody">
+
+	<blockquote class="layui-elem-quote">
+		<p>欢迎进入后台管理系统</p>
+	</blockquote>
+	<div class="row">
+		<div class="sysNotice col">
+			<blockquote class="layui-elem-quote title">系统基本参数</blockquote>
+			<table class="layui-table">
+				<colgroup>
+					<col width="150">
+					<col>
+				</colgroup>
+				<tbody>
+					<tr>
+						<td>当前版本</td>
+						<td class="version">v1.0.0</td>
+					</tr>
+					<tr>
+						<td>开发作者</td>
+						<td class="author">云购技术团队</td>
+					</tr>
+					<tr>
+						<td>网站首页</td>
+						<td class="homePage"><a href="{$webSetting.company_url}" target="_blank">{$webSetting.company_url}</a></td>
+					</tr>
+					<tr>
+						<td>服务器环境</td>
+						<td class="server">linux</td>
+					</tr>
+					<tr>
+						<td>数据库版本</td>
+						<td class="dataBase">v5.6</td>
+					</tr>
+					<tr>
+						<td>最大上传限制</td>
+						<td class="maxUpload">2M</td>
+					</tr>
+
+				</tbody>
+			</table>
+			<blockquote class="layui-elem-quote title">最新文章<i class="iconfont icon-new1"></i></blockquote>
+			<table class="layui-table" lay-skin="line">
+				<colgroup>
+					<col>
+					<col width="200">
+				</colgroup>
+				<tbody class="hot_news">
+				{if $newList}
+					{foreach $newList as $val}
+						<tr>
+							<td>{$val.newsid}</td>
+							<td>{$val.title}</td>
+							<td>{$val.author}</td>
+							<td>{$val.isshow}</td>
+							<td>{$val.createtime}</td>
+						</tr>
+					{/foreach}
+				{/if}
+				</tbody>
+			</table> 
+		</div>
+	</div>
+	<script>
+        var PUBLIC_URL ="__MANAGE__";
+	</script>
+	<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+</body>
+</html>

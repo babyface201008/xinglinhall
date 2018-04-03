@@ -1,0 +1,56 @@
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+</head>
+<style>
+	#logo img{
+		max-height:50px;
+		margin-left: 30px;
+	}
+</style>
+<body class="childrenBody" style="height: 100%">
+	<form class="layui-form" style="width:80%;height: 100%" enctype="multipart/form-data" method="post">
+		<input type="hidden" name="op" value="edit">
+		<input type="hidden" name="id" value="{$bannerData.bannerid}">
+		<div class="layui-form-item">
+			<label class="layui-form-label">轮播图片</label>
+			<div class="layui-input-block">
+				<input type="file" class="layui-upload-file image"  name="image"   placeholder="轮播图">
+				<span id="logo">
+					<img src="__PUBLIC__upload/manage/{$bannerData.bannerimg}" alt="">
+				</span>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">链接地址</label>
+			<div class="layui-input-block">
+				<input type="tel" class="layui-input bannerurl"  name="bannerurl"  value="{$bannerData.bannerurl}" placeholder="请输入网站地址">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">排列顺序</label>
+			<div class="layui-input-block">
+				<input type="tel" class="layui-input linksUrl"  name="sort" lay-verify="number"  value="{$bannerData.sort}" placeholder="排列位置(由小排到大)">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否显示</label>
+			<div class="layui-input-block">
+				<input type="checkbox" name="display" class="homePage" title="显示" {if $bannerData.display==1 }checked {/if}>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<input type="hidden" class="bannerimg" lay-verify="logo" name="bannerimg"   value="{$bannerData.bannerimg}">
+				<button class="layui-btn" lay-submit="" lay-filter="addBanner">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+	</form>
+	<script>
+        var UPLOAD_URL='{:url("banner/uploadimg")}'
+        var bannerSave_URL='{:url("banner/save")}'
+        var LOGO_URL='__PUBLIC__'+'upload/manage/'
+	</script>
+	<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+	<script type="text/javascript" src="__MANAGE__js/admin/bannerAdd.js"></script>

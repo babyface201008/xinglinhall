@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>{$basic.webname} -产品服务</title>
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/base.css" type="text/css" />
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/index.css" type="text/css" />
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/product.css" type="text/css" />
+    <script type="text/javascript" src="__INDEX__js/jquery.min.js"></script>
+</head>
+<body>
+{include file="public/head" /}
+<div class="pro_banner">
+    {foreach $navData as $key =>$item}
+    {eq name="item.url" value="$controller"}
+    <a href="#" style="background:url(__PUBLIC__upload/manage/ad/{$item.ad_src}) no-repeat center;display:block;"></a>
+    {/eq}
+    {/foreach}
+</div>
+
+
+<!--产品服务-->
+<div class="wh" id="position">
+    <div class="pro_title">
+        <h2>解决方案</h2>
+        <p>Soluction</p>
+        <i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
+    </div>
+    <div class="contls">
+        <div  id="soluction" class="soluction">
+            {foreach $catData as $key =>$value}
+            {if $key<6}
+            <a href="{:url('solution/index','catid='.$value.catid)}#position" {eq name="$value.catid" value="$catid"}class="on" {/eq} > {$value.catname}</a >
+            {/if}
+            {/foreach}
+
+        </div>
+    </div>
+    <div class="contls">
+        <div id="tab" class="soluction_catotry">
+            <div class="soluction_catotryin">
+                <ul class="tutu menu" id="soluctionLi">
+                    {foreach $solutionData as $k =>$v}
+                    <li {eq name="k" value="0"}class="on" {/eq}>{$v.name}</li>
+                    {/foreach}
+                </ul>
+            </div>
+            <div id="content">
+                {foreach $solutionData as $k1 =>$v2}
+                {if $k1==0}
+                <div class="con1"  style="display:block;">
+                    {else}
+                    <div class="contls con1" id="contls" style="">
+                        {/if}
+                        {$v2.desc}
+                    </div>
+                    {/foreach}
+                </div>
+
+
+
+                <script>
+                    $(function(){
+                        window.onload = function()
+                        {
+                            var $li = $('#tab li');
+                            var $ul = $('#content div');
+
+                            $li.click(function(){
+                                var $this = $(this);
+                                var $t = $this.index();
+                                $li.removeClass();
+                                $this.addClass('on');
+                                $ul.css('display','none');
+                                $ul.eq($t).css('display','block');
+                            })
+                        }
+                    });
+                </script>
+
+                <div class="leftbtn soluction_catotryinbtn"><em class="fa fa-angle-left"></em></div>
+                <div class="rightbtn soluction_catotryinbtn"><em class="fa fa-angle-right"></em></div>
+            </div>
+        </div>
+    </div>
+    <div class="box_bor"></div>
+    <!--底部导航列表-->
+    {include file="public/foot" /}
+</body>
+
+<script type="text/javascript" src="__INDEX__js/slidelf.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".fl-pic").slidelf({
+            "prev":"left-arrow",
+            "next":"right-arrow",
+            "speed":1000
+        });
+    });
+</script>
+<script src="__INDEX__js/slider.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var bannerSlider = new Slider($('#banner_tabs'), {
+            time: 5000,
+            delay: 400,
+            event: 'hover',
+            auto: true,
+            mode: 'fade',
+            controller: $('#bannerCtrl'),
+            activeControllerCls: 'active'
+        });
+        $('#banner_tabs .flex-prev').click(function() {
+            bannerSlider.prev()
+        });
+        $('#banner_tabs .flex-next').click(function() {
+            bannerSlider.next()
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#nav li").hover(function(){
+            $(this).find("div").slideDown("slow");
+        },function(){
+            $(this).find("div").slideUp("fast");
+        });
+    });
+</script>
+</html>

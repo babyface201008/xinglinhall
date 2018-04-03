@@ -1,0 +1,47 @@
+<!--底部导航列表-->
+<div class="wh clear">
+	<div class="bot_list fn-left">
+    	<h2>关于照升</h2>
+        <ul>
+        	<li><a href="{:url('aboutus/index')}">关于我们</a></li>
+            <li><a href="{:url('news/index')}">照升文化</a></li>
+            <li><a href="{:url('recruit/index')}">招兵买马</a></li>
+            <li><a href="{:url('contactus/index')}">联系我们</a></li>
+        </ul>
+    </div>
+    <div class="bot_list fn-left">
+    	<h2>产品服务</h2>
+        <ul>
+            {foreach $category as $k1 =>$v1}
+        	<li><a href="{:url('product/index','catid='.$v1.catid)}">{$v1.catname}</a></li>
+            {/foreach}
+        </ul>
+    </div>
+    <div class="bot_list fn-left">
+    	<h2>合作伙伴</h2>
+        <ul>
+            {foreach $friendlink as $k2 =>$v2}
+            {if $k2<5}
+            <li><a  href="{$v2.url}">{$v2.webname}</a></li>
+            {/if}
+            {/foreach}
+        </ul>
+    </div>
+    <div class="bot_list fn-left">
+    	<h2>我们的优势</h2>
+        <ul>
+        	<li><a href="{:url('index/index')}#fast">开户快</a></li>
+            <li><a href="{:url('index/index')}#good">政策好</a></li>
+            <li><a href="{:url('index/index')}#weight">重运营</a></li>
+            <li><a href="{:url('index/index')}#height">高转化</a></li>
+        </ul>
+    </div>
+  <div class="bot_list_right">
+    	<h2>关注照升</h2>
+        <p><a href="#time_icon"><i><img src="__INDEX__images/wxin.png" width="200" height="200" alt=""/></i>照升微信</a></p>
+        <p><a href="#time_icon"><i><img src="__INDEX__images/xlang.png" width="200" height="200" alt=""/></i>照升微博</a></p>
+    </div>
+</div>
+<div class="copyright clear">{$basic.copyright} | {$basic.webname} | {$basic.company_call}</div>
+
+

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>管理首页</title>
+
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="__ASSETS__css/jquery.treegrid.css" />
+    <link rel="stylesheet" href="__ASSETS__css/select2.min.css" />
+    {include file="public/head" /}
+
+
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="{:url('index/index')}">首页</a>
+                    </li>
+                    <li>
+                        系统管理
+                    </li>
+                    <li class="active"><a href="{:url('admin/index')}">系统设置</a></li>
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+
+            <div class="page-content">
+                {include file="public/toolbar" /}
+
+                <div class="page-header">
+                    <h1>
+                        管理员管理
+                        <small>
+                            <i class="ace-icon fa fa-angle-double-right"></i>
+                            系统管理员
+                        </small>
+                    </h1>
+                </div><!-- /.page-header -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs" id="myTab1">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#systempane">
+                                        网站配置
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#emailpane">
+                                        邮件配置
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#smspane">
+                                        短信配置
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#scorepane">
+                                        积分配置
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#seopane">
+                                        seo配置
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div id="systempane" class="tab-pane fade in active">
+                                    <form  class="bs-example bs-example-form layui-form" id="system" method="post">
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    是否开启运费：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <div class="col-xs-3">
+                                                        <label>
+                                                            <input name="is_express" lay-ignore class="ace ace-switch ace-switch-4 btn-empty is_express" type="checkbox" <?php if($is_express==1){ ?>checked <?php }?> >
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    运费：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9 express_val" name="express_val" lay-verify="number" value="<?php echo $express_val?>" <?php if($is_express==0){ ?>disabled<?php }?>>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    订购热线：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="order_tel" lay-verify="required" value="<?php echo $order_tel?>"  required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    咨询热线：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="consult_tel" lay-verify="required" value="<?php echo $consult_tel?>" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    版权所有：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="colophon" lay-verify="required" value="<?php echo $colophon?>" required/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    订单提醒：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <div class="col-xs-3">
+                                                        <label>
+                                                            <input name="orderPrompt" lay-ignore class="ace ace-switch ace-switch-4 btn-empty" type="checkbox" <?php if($orderPrompt==1){ ?>checked <?php }?>>
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <button class="btn btn-info system-save"  lay-submit lay-filter="settingform"  data-msg="system" url="{:url('setting/saveSystem')}" type="button">
+                                            保存设置
+                                        </button>
+                                        <!--<a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 50px"  data-msg="system" class="easyui-linkbutton system-save" url="{:url('setting/saveSystem')}">保存设置</a>-->
+                                    </form>
+                                </div>
+                                <div id="emailpane" class="tab-pane fade in">
+                                    <form  class="bs-example bs-example-form layui-form" id="email" method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    邮件服务器：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="SMTP_SERVER" lay-verify="required" value="<?php echo $SMTP_SERVER?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    邮件服务器端口：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="SMTP_PORT" lay-verify="required" value="<?php echo $SMTP_PORT?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    SMTP服务器的用户邮箱：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="SMTP_USER_EMAIL" lay-verify="email" value="<?php echo $SMTP_USER_EMAIL?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    SMTP服务器账户名：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="SMTP_USER" lay-verify="email" value="<?php echo $SMTP_USER?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    SMTP服务器账户密码：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="password" class="col-sm-9"  name="SMTP_PWD" lay-verify="required" value="<?php echo $SMTP_PWD?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    发送邮件类型：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="SMTP_MAIL_TYPE" lay-verify="required" value="<?php echo $SMTP_MAIL_TYPE?>" />(HTML,TXT 注意都是大写)
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    超时时间：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="SMTP_TIME_OUT" lay-verify="required" value="<?php echo $SMTP_TIME_OUT?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">邮箱验证：</label>
+                                                    <div class="col-xs-3">
+                                                        <label>
+                                                            <input name="SMTP_AUTH" class="ace ace-switch ace-switch-4 btn-empty" lay-ignore type="checkbox" <?php if($SMTP_AUTH==1){ ?>checked <?php }?>>
+                                                            <span class="lbl"></span>
+                                                        </label>
+                                                    </div>
+                                            </div>
+                                        <button class="btn btn-info system-save" lay-submit lay-filter="settingform"  data-msg="email" url="{:url('setting/saveEmail')}" type="button">
+                                            保存设置
+                                        </button>
+                                        <!--<a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 30px "  data-msg="email" class="easyui-linkbutton system-save" url="{:url('setting/saveEmail')}">保存设置</a>-->
+                                    </form>
+                                </div>
+                                <div id="smspane" class="tab-pane fade in">
+                                    <form  class="bs-example bs-example-form layui-form" id="sms" method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    短信企业ID：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="enterpriseID" lay-verify="required" value="<?php echo $enterpriseID?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    短信登陆名：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="loginName" lay-verify="required" value="<?php echo $loginName?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    短信登录密码：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="password" class="col-sm-9" name="password" lay-verify="required" value="<?php echo $password?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    短信接口：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="url" lay-verify="required" value="<?php echo $url?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    短信扩展：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="subPort" lay-verify="required" value="<?php echo $subPort?>"  />
+                                                </div>
+                                            </div>
+                                        <button class="btn btn-info system-save" lay-submit lay-filter="settingform"  data-msg="sms" url="{:url('setting/saveSMS')}" type="button">
+                                            保存设置
+                                        </button>
+                                        <!--<a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 30px" data-msg="sms" class="easyui-linkbutton system-save" url="{:url('setting/saveSMS')}">保存设置</a>-->
+                                    </form>
+                                </div>
+                                <div id="scorepane" class="tab-pane fade in">
+                                    <form  class="bs-example bs-example-form layui-form" id="system-score" method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    注册：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="register" lay-verify="number" value="<?php echo $register?>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    手机号：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="phone" lay-verify="number" value="<?php echo $phone?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    邮箱：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="email" lay-verify="number" value="<?php echo $email?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    头像：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="face" lay-verify="number" value="<?php echo $face?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    昵称：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="nickname" lay-verify="number" value="<?php echo $nickname?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    QQ：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="qq" lay-verify="number" value="<?php echo $qq?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    性别：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="sex" lay-verify="number" value="<?php echo $sex?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    真实姓名：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9"  name="real_name" lay-verify="number" value="<?php echo $real_name?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    常用药：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="common_medicine" lay-verify="number" value="<?php echo $common_medicine?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    生日：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="birthday" lay-verify="number" value="<?php echo $birthday?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    身高：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="height" lay-verify="number" value="<?php echo $height?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    体重：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="weight" lay-verify="number" value="<?php echo $weight?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    婚姻状况：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="maritalStatus" lay-verify="number" value="<?php echo $maritalStatus?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    月收入：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="monthcome" lay-verify="number" value="<?php echo $monthcome?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    工作性质：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="occupation" lay-verify="number" value="<?php echo $occupation?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    购买：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="consume" lay-verify="number" value="<?php echo $consume?>" />
+                                                </div>
+                                            </div>
+                                        <button class="btn btn-info system-save" lay-submit lay-filter="settingform"  data-msg="score" url="{:url('setting/saveScore')}" type="button">
+                                            保存设置
+                                        </button>
+                                        <!--<a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 30px "  data-msg="score" class="easyui-linkbutton system-save" url="{:url('setting/saveScore')}">保存设置</a>-->
+                                    </form>
+                                </div>
+                                <div id="seopane" class="tab-pane fade in">
+                                    <form  class="bs-example bs-example-form layui-form" id="seo" method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    首页seo网站title：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="title" lay-verify="required" value="<?php echo $title?>"  />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    首页seo网站关键字：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="keywords" lay-verify="required" value="<?php echo $keywords?>" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    首页seo网站描述：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="description" lay-verify="required" value="<?php echo $description?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    最新药品SEOtitle：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="product_title" lay-verify="required" value="<?php echo $product_title?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    最新药品SEO网站关键字：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="product_keywords" lay-verify="required" value="<?php echo $product_keywords?>" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    最新药品SEO网站描述：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="product_description" lay-verify="required" value="<?php echo $product_description?>" />
+                                                </div>
+                                            </div>
+                                            <div class="space-4"></div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    健康资讯SEOtitle：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="news_title" lay-verify="required" value="<?php echo $news_title?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    健康资讯SEO关键字：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="news_keywords" lay-verify="required" value="<?php echo $news_keywords?>" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    健康资讯SEO描述：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="news_description" lay-verify="required" value="<?php echo $news_description?>" />
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    用药指导SEOtitle：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="medication_title" lay-verify="required" value="<?php echo $medication_title?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    用药指导SEO关键字：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="medication_keywords" lay-verify="required" value="<?php echo $medication_keywords?>" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    用药指导SEO描述：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="medication_description" lay-verify="required" value="<?php echo $medication_description?>" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    健康问答SEOtitle：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="question_title" lay-verify="required" value="<?php echo $question_title?>" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    健康问答SEO关键字：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="question_keywords" lay-verify="required" value="<?php echo $question_keywords?>" />
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right">
+                                                    健康问答SEO描述：
+                                                </label>
+                                                <div  class="col-sm-9">
+                                                    <input type="text" class="col-sm-9" name="question_description" lay-verify="required" value="<?php echo $question_description?>" />
+                                                </div>
+                                            </div>
+                                        <button class="btn btn-info system-save" lay-submit lay-filter="settingform"  data-msg="seo" url="{:url('setting/saveSeo')}" type="button">
+                                            保存设置
+                                        </button>
+                                        <!--<a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"   data-msg="seo" style="margin:20px 0 0 30px" class="easyui-linkbutton system-save" url="{:url('setting/saveSeo')}">保存设置</a>-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    <script type="text/javascript">
+        var saveSystem = '{:url("setting/saveSystem")}',
+            getSystemData = "{:url('setting/getSystemDataJSON')}",
+            rechargeSetUrl = "{:url('recharge_money/index')}";
+        var getRecharge_moneyList ="{:url('recharge_money/getRecharge_moneyListJSON')}" ,
+            switchMoneyState ="{:url('recharge_money/ischeckEditJSON')}",
+            saveUrl ="{:url('recharge_money/save')}" ,
+            getLastIdUrl ="{:url('recharge_money/getLastId')}" ,
+            deleteRecharge_money ="{:url('recharge_money/deleteRecharge_money')}";
+    </script>
+    {include file="public/foot" /}
+    <script type="text/javascript" src="__ASSETS__js/Function.js"></script>
+    <script type="text/javascript" src="__ASSETS__js/admin/setting.js"></script>

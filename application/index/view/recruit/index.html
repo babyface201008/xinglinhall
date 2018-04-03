@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>招兵买马</title>
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/base.css" type="text/css" />
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/index.css" type="text/css" />
+    <link rel="stylesheet" rev="stylesheet" href="__INDEX__css/all.css" type="text/css" />
+    <script type="text/javascript" src="__INDEX__js/jquery.min.js"></script>
+</head>
+<body>
+{include file="public/head" /}
+<div class="pro_banner">
+    {foreach $navData as $key =>$item}
+    {eq name="item.url" value="$controller"}
+    <a href="#" style="background:url(__PUBLIC__upload/manage/ad/{$item.ad_src}) no-repeat center;display:block;"></a>
+    {/eq}
+    {/foreach}
+</div>
+
+
+<!--人才招聘-->
+<div class="wh clear">
+    <div class="news_title">
+        <h2>招兵买马</h2>
+        <p>job</p>
+        <span></span>
+    </div>
+    <div class="content" style="width: 100%">
+        <div class="left">
+            <ul class="flUl">
+                {foreach $recruirData as $key =>$val}
+                <li {eq name="key" value="0"}class="on"{/eq}  rel="content_{$val.recruitid}" ><em class="fa fa-angle-right"></em>{$val.post}</li>
+                {/foreach}
+            </ul>
+        </div>
+        <div class="right">
+            {foreach $recruirData as $k =>$v}
+            <div style=" width: 100%;margin: 20px;{neq name="k" value="0"}display:none{/neq}"  id="content_{$v.recruitid}"  ><h1 style="box-sizing:border-box;margin:0px;padding:0px;font-size:20px;font-weight:400;line-height:24px;font-family:STHeiti, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'Simsun,sans-self';white-space:normal;color:#F39800;background-color:#FFFFFF;">
+                {$v.title}
+            </h1>
+                {$v.desc}
+            </div>
+            {/foreach}
+        </div>
+    </div>
+</div>
+
+<div class="box_bor clear"></div>
+<!--底部导航列表-->
+{include file="public/foot" /}
+</body>
+<script type="text/javascript">
+    $(function () {
+        $(".flUl li").bind("click", function () {
+            var the_dpind_d = $(".flUl li.on").index();
+
+            $(".flUl li").removeClass("on");
+
+            $(this).addClass("on");
+            var rel = $(this).attr("rel");
+
+            $("#"+rel).siblings().hide();
+            $("#"+rel).show();
+        });
+    });
+
+</script>
+
+<script type="text/javascript" src="__INDEX__js/slidelf.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".fl-pic").slidelf({
+            "prev":"left-arrow",
+            "next":"right-arrow",
+            "speed":1000
+        });
+    });
+</script>
+<script src="__INDEX__js/slider.js"></script>
+<script type="text/javascript">
+    $(function() {
+        var bannerSlider = new Slider($('#banner_tabs'), {
+            time: 5000,
+            delay: 400,
+            event: 'hover',
+            auto: true,
+            mode: 'fade',
+            controller: $('#bannerCtrl'),
+            activeControllerCls: 'active'
+        });
+        $('#banner_tabs .flex-prev').click(function() {
+            bannerSlider.prev()
+        });
+        $('#banner_tabs .flex-next').click(function() {
+            bannerSlider.next()
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#nav li").hover(function(){
+            $(this).find("div").slideDown("slow");
+        },function(){
+            $(this).find("div").slideUp("fast");
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,72 @@
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/news.css" media="all" />
+</head>
+<body class="childrenBody" style="height: 100%">
+<blockquote class="layui-elem-quote news_search">
+
+	<div class="layui-inline">
+		<form action="" class="setting_toolbar layui-form">
+		<div class="layui-input-inline">
+			<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		</div>
+		<div class="layui-input-inline">
+			<select name="code"  class="code" placeholder="直接选择或搜索选择">
+				<option value="">配置分类</option>
+				{foreach $codeData as $key=> $val}
+				<option value="{$key}">{$val}</option>
+				{/foreach}
+			</select>
+		</div>
+		<a class="layui-btn search_btn">查询</a>
+		<input type="hidden" id="curr" value="1">
+		</form>
+	</div>
+
+	<div class="layui-inline">
+		<a class="layui-btn settingAdd_btn" style="background-color:#5FB878">添加配置</a>
+	</div>
+	<div class="layui-inline">
+		<a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+	</div>
+	<div class="layui-inline">
+		<a class="layui-btn layui-btn-warm reload_btn">重置查询</a>
+	</div>
+
+</blockquote>
+<div class="layui-form setting_list">
+	<table class="layui-table">
+		<colgroup>
+			<col width="5%">
+			<col width="10%">
+			<col width="10%">
+			<col width="10%">
+			<col width="40%">
+			<col width="15%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+			<th style="text-align:left;">配置分类</th>
+			<th>配置标题</th>
+			<th>配置名</th>
+			<th>配置值</th>
+			<th>操作</th>
+		</tr>
+		</thead>
+		<tbody class="setting_content">
+		</tbody>
+
+	</table>
+
+</div>
+<div id="page"></div>
+<script>
+    var settingAdd_URL='{:url("setting/add")}'
+    var settingEdit_URL='{:url("setting/edit")}'
+    var settingList_URL='{:url("setting/getSettinglist")}'
+    var settingdel_URL='{:url("setting/del")}'
+
+</script>
+<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+<script type="text/javascript" src="__MANAGE__js/admin/settingList.js"></script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>新闻列表--企业后台管理系统</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/news.css" media="all" />
+</head>
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote solution_search">
+		<div class="layui-inline">
+		    <div class="layui-input-inline">
+		    	<input type="text" value="" placeholder="请输入关键字" class="layui-input search_input">
+		    </div>
+		    <a class="layui-btn search_btn">查询</a>
+			<input type="hidden" id="curr" value="1">
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-normal solutionAdd_btn">添加案例</a>
+		</div>
+		<!--<div class="layui-inline">
+			<a class="layui-btn recommend" style="background-color:#5FB878">推荐文章</a>
+		</div>
+		<div class="layui-inline">
+			<a class="layui-btn audit_btn">审核文章</a>
+		</div>-->
+		<div class="layui-inline">
+			<a class="layui-btn layui-btn-danger batchDel">批量删除</a>
+		</div>
+		<div class="layui-inline">
+			<div class="layui-form-mid layui-word-aux">本页面刷新后除新添加的文章外所有操作无效，关闭页面所有数据重置</div>
+		</div>
+	</blockquote>
+	<div class="layui-form solution_list">
+	  	<table class="layui-table">
+		    <colgroup>
+				<col width="2%">
+				<col width="3%">
+				<col width="14%">
+				<col width="7%">
+				<col width="6%">
+				<col width="4%">
+				<col width="9%">
+				<col width="15%">
+		    </colgroup>
+		    <thead>
+				<tr>
+					<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose" id="allChoose"></th>
+					<th style="text-align:left;">ID</th>
+					<th >案例名称</th>
+					<th >案例分类</th>
+					<th>是否显示</th>
+					<th>排序</th>
+					<th>发布时间</th>
+					<th>操作</th>
+				</tr>
+		    </thead>
+
+			<tbody class="solution_content">
+			<!--{if condition="isset($list)"}
+			{foreach name="$list" item="v"}
+			<tr>
+				<td>
+					<input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose">
+				</td>
+				<td align="left">{$v.title}</td>
+				<td>{$v.author}</td>
+				<td>{$v.pid}</td>
+				<td>{$v.istuijian}</td>
+				<td>{$v.isshow}</td>
+				<td>{$v.createtime|date='Y-m-d',###}</td>
+				<td>
+					<a class="layui-btn layui-btn-mini links_edit"><i class="iconfont icon-edit"></i> 编辑</a>
+					<a class="layui-btn layui-btn-danger layui-btn-mini links_del" data-id="{$v.solutionid}"><i class="layui-icon">&#xe640;</i> 删除</a>
+				</td>
+			</tr>
+
+			{/foreach}
+			{/if}-->
+			</tbody>
+		</table>
+
+	</div>
+	<div id="page"></div>
+	<script type="text/javascript">
+        var getSolutionListJSON =  "{:url('manage/Solution/getSolutionList')}";
+        var delSolutionJSON =  "{:url('manage/Solution/delSolution')}";
+	</script>
+	<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+	<script type="text/javascript" src="__MANAGE__js/admin/solutionList.js"></script>
+</body>
+</html>

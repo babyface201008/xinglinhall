@@ -1,0 +1,38 @@
+
+<div class="header">
+	<div class="wh">
+    	<div class="logo fn_30"><img src="__PUBLIC__upload/manage/{$basic.logo}" alt=""></div>
+        <div class="menu_center fn_16 fn-left">
+                <ul id="nav">
+                    {foreach $navData as $key=> $val}
+                    <li class="mainlevel">
+                        <a href="{:url($val.url)}">{$val.navname}</a>
+                        {if isset($val.children)}
+                        <div>
+                        {foreach $val.children as $item}
+                            <a href="{:url($val.url,'catid='.$item['catid'])}#position">{$item.catname}</a>
+                        {/foreach}
+                        </div>
+                        {/if}
+                    </li>
+                    {if $key < count($navData)-1}
+                    <li class="s">|</li>
+                    {/if}
+                    {/foreach}
+			</ul>
+        </div>
+        
+        <div class="time_right fr ">
+        	<div id="time_icon" class="time_icon fn-left">
+            	<span><a href="javasrcipt:viod(0)"><img src="__INDEX__images/wx.png" width="20" height="20" alt=""/></a>
+                    <div class="weixin">
+                       <img src="__PUBLIC__upload/manage/{$basic.QR_code}" alt="">
+                    </div>
+            	</span>
+                <span><a href="{$basic.microblog}"><img src="__INDEX__images/xl.png" width="20" height="20" alt=""/></a></span>
+            </div>
+            <b class="time_txt"><i></i>{$basic.company_call}</b>
+        </div>
+    </div>
+</div>
+

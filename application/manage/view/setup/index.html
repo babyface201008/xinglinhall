@@ -1,0 +1,83 @@
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/news.css" media="all" />
+</head>
+	<style>
+		.layui-form-label {
+			width: 113px;
+		}
+		.layui-input-block {
+			margin-left: 143px;
+		}
+		.email .layui-form-label {
+			width: 177px;
+		}
+		.email .layui-input-block {
+			margin-left: 210px;
+		}
+	</style>
+<body class="childrenBody" style="height: 100%">
+<blockquote class="layui-elem-quote news_search">
+	<!--<div class="layui-inline">-->
+		<!--<a class="layui-btn settingAdd_btn" style="background-color:#5FB878">添加配置</a>-->
+	<!--</div>-->
+</blockquote>
+<div class="layui-tab" lay-filter="setup">
+	<ul class="layui-tab-title">
+		<li class="layui-this" lay-id="system">系统设置</li>
+		<li lay-id="sms">短信配置</li>
+		<li lay-id="seo">seo设置</li>
+		<!--<li lay-id="score">积分设置</li>-->
+		<li lay-id="email">邮件配置</li>
+	</ul>
+	<div class="layui-tab-content">
+		{foreach $setup as $key=>$val}
+		<div class="layui-tab-item {if $key=='system'}layui-show{/if} {$key}">
+			<form class="layui-form"  method="post">
+				{foreach $val as $item}
+				{if $item.variable == 'is_express' || $item.variable == 'orderPrompt' || $item.variable == 'SMTP_AUTH'}
+				<div class="layui-form-item">
+					<label class="layui-form-label">{$item.desc}：</label>
+					<div class="layui-input-block">
+						<select name="{$item.variable}" lay-filter="{$item.desc}">
+							<option value="1" {if $item.value==1}selected{/if}>开启</option>
+							<option value="0" {if $item.value==0}selected{/if}>关闭</option>
+						</select>
+					</div>
+				</div>
+				{elseif $item.variable=='password' || $item.variable=='SMTP_PWD'}
+				<div class="layui-form-item">
+					<label class="layui-form-label">{$item.desc}：</label>
+					<div class="layui-input-block">
+						<input type="password" class="layui-input" name="{$item.variable}" lay-verify="required"  value="{$item.value}" placeholder="请输入{$item.desc}">
+					</div>
+				</div>
+				{else}
+				<div class="layui-form-item">
+					<label class="layui-form-label">{$item.desc}：</label>
+					<div class="layui-input-block">
+						<input type="text" class="layui-input" name="{$item.variable}" lay-verify="required"  value="{$item.value}" placeholder="请输入{$item.desc}">
+					</div>
+				</div>
+				{/if}
+				{/foreach}
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="setup">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		{/foreach}
+	</div>
+</div>
+
+<script>
+    var settingAdd_URL='{:url("setting/add")}'
+    var UPLOAD_URL='{:url("basic/uploadimg")}'
+    var LOGO_URL='__PUBLIC__'+'upload/manage/'
+    var setupSave_URL='{:url("setup/save")}'
+</script>
+<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+<script type="text/javascript" src="__MANAGE__js/admin/setupAdd.js"></script>

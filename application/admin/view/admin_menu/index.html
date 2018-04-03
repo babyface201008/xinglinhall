@@ -1,0 +1,32 @@
+<table id="adminMenu" >
+</table>
+
+<div class="wraps">
+	<form id="adminMenu-toolbar">
+		<div class="buts">
+			<a href_r='javascript:void(0);'  id="adminMenuAdd_btn"  class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="adminMenuOpt.add();">添加</a>
+			<a href_r="javascript:void(0);" id="adminMenuEdit_btn"  class="easyui-linkbutton" data-options="iconCls:'icon-pencil',plain:true"  onclick="adminMenuOpt.edit();">修改</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-delete',plain:true" onclick="adminMenuOpt.delete();">删除</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-select_continuous_area',plain:true" onclick="adminMenuOpt.redo();">取消选择</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_refresh',plain:true" onclick="adminMenuOpt.refresh();">更新数据列表</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-bin_empty',plain:true" onclick="adminMenuOpt.clearsearchs();">重置查询</a>
+		</div>
+		<div class="search">
+			<label for="search-keywords">关键字：</label>
+			<input type="text" id="adminMenu-search-keywords" />&nbsp;&nbsp;
+			<a href="javascript:void(0);" class="easyui-linkbutton search-btn" data-options="iconCls:'icon-search'" onclick="adminMenuOpt.searchs();">查询</a>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+    var getMenuListJSON = '{:url("adminMenu/getMenulistJSON")}';
+    var MenuAddurl = '{:url("adminMenu/add")}';
+    var MenuEditurl = '{:url("adminMenu/edit")}';
+    var MenuDelurl = '{:url("adminMenu/del")}';
+    var Menusaveurl = '{:url("adminMenu/save")}';
+    var adminMenuSwitchState = '{:url("adminMenu/muneSwitchState")}';
+    var	 adminMenuSearch   = $('#adminMenu-toolbar');//表头工具条
+
+</script>
+<script type="text/javascript" src="__STATIC__js/admin/adminmenu.js"></script>

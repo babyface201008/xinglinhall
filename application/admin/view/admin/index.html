@@ -1,0 +1,146 @@
+<!-- 数据列表 -->
+<table id="admin"></table>
+<!-- 顶部工具条 -->
+<div class="wraps">
+	<form id="admin-toolbar">
+		<div class="buts">
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="adminOpt.add();">新增</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pencil',plain:true" onclick="adminOpt.edit();">修改</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-delete',plain:true" onclick="adminOpt.delete();">删除</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-select_continuous_area',plain:true" onclick="adminOpt.redo();">取消选择</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_refresh',plain:true" onclick="adminOpt.refresh();">更新数据列表</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-bin_empty',plain:true" onclick="adminOpt.clearsearchs();">重置查询</a>
+		</div>
+		<div class="search">
+			<label for="search-keywords">账号状态：</label>
+			<input type="text" id="admin-search-state" />
+			<label for="search-keywords">关键字：</label>
+			<input type="text" id="admin-search-keywords" />&nbsp;&nbsp;
+			<input type="text" id="admin-search-dateType" />
+			<label for="search-timeFrame">日期：</label>
+			<input type="text" id="admin-search-dateStart">
+			<label for="partingline"> - </label>
+			<input type="text" id="admin-search-dateEnd">
+			<a href="javascript:void(0);" class="easyui-linkbutton search-btn" data-options="iconCls:'icon-search'" onclick="adminOpt.searchs();">查询</a>
+		</div>
+	</form>
+</div>
+<!-- 新增弹窗 -->
+<div class="wraps">
+	<form id="admin-add">
+		<input type="hidden" name="op" value="add">
+		<table class="add_panel">
+			<tbody>
+			<tr>
+				<td class="label">
+					<label for="add-name">登录账号：</label>
+				</td>
+				<td>
+					<input type="text" class="admin" name="adminname"></input>
+				</td>
+			</tr>
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">登录密码：</label>
+				</td>
+				<td>
+					<input type="text" class="password" id="addpassword" name="password"></input>
+					<span class="link randpassword">随机密码</span>
+				</td>
+			</tr>
+			<tr>
+				<td>所属角色：</td>
+				<td>
+					<?{if condition="$groupData"}?>
+					<?{foreach name="$groupData" item="v" }?>
+
+					<input id="groupid{$v.groupid}" type="checkbox" name="groupid[]" value="{$v.groupid}">
+					<label style="cursor:pointer" for="groupid{ $v.groupid}">{$v.groupname}</label>
+
+					<?{/foreach}?>
+					<?{/if}?>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+
+<!-- 编辑弹窗 -->
+<div class="wraps">
+	<form id="admin-edit">
+		<input type="hidden" name="adminid"></input>
+		<input type="hidden" name="op" value="edit">
+		<table class="add_panel">
+			<tbody>
+			<tr>
+				<td class="label">
+					<label for="add-name">登录账号：</label>
+				</td>
+				<td>
+					<input type="text" class="admin" name="adminname" data-options="disabled:true"></input>
+				</td>
+			</tr>
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">登录密码：</label>
+				</td>
+				<td>
+					<input type="text"  class="password" id="editpassword" name="editpassword"></input>
+					<span class="link randpassword">随机密码</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">
+					<label for="add-name">姓名：</label>
+				</td>
+				<td>
+					<input type="text" class="realname" name="realname"></input>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">
+					<label for="add-name">邮箱：</label>
+				</td>
+				<td>
+					<input type="text" class="email" name="email" ></input>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">
+					<label for="add-name">手机号：</label>
+				</td>
+				<td>
+					<input type="number" class="phone" name="phone" ></input>
+				</td>
+			</tr>
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">账号状态：</label>
+				</td>
+				<td>
+					<input type="text" id="user-edit-state-button"></input>
+					<input type="hidden" name="islocked" id="user-edit-state"></input>
+					<input type="hidden" name="islockedOld" ></input>
+				</td>
+			</tr>
+			<tr>
+				<td>所属角色：</td>
+				<td id="groupids">
+
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var getAdminList = '{:url("Admin/getAdminListJSON")}',
+	getAdminEditData = "{:url('Admin/getAdminEditJSON')}",
+	adminSswitchState = "{:url('Admin/switchState')}",
+	saveAdmin = "{:url('Admin/save')}",
+	deleteAdmin = "{:url('Admin/delete')}";
+
+</script>
+<script type="text/javascript" src="__STATIC__js/admin/admin.js"></script>

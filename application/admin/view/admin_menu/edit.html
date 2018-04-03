@@ -1,0 +1,54 @@
+<div style="padding:10px 60px 20px 60px">
+ <form id="menuEditForm" method="post"  action="{:url('adminMenu/save')}">
+    <table id="menuEditTable" style="margin:10px;height:150px;">
+      <tr style="margin:5px 0px;">
+        <td>菜单名称：</td>
+        <td><input type="text" name="menuname" value="<?php echo $data['menuname']?>" class="easyui-textbox" data-options="prompt:'请输入菜单名称',required:true,height:30" /></td>
+      </tr>
+      <tr style="">   
+          <td>父ID：</td>
+          <td>
+            <input id="parentid_edit" name="parentid" value="<?php echo $data['parentid']?>">
+          </td>
+      </tr>
+    <tr style="margin:5px 0px;">
+        <td>图标icon：</td>
+        <td><input type="text" name="icon"  value="<?php echo $data['icon']?>" class="easyui-textbox"  data-options="required:true,height:30" /></td>
+    </tr>
+    <tr style="margin:5px 0px;">
+        <td>链接：</td>
+        <td><input type="text" name="url" value="<?php echo $data['url']?>" class="easyui-textbox" data-options="required:true,height:30"/></td>
+    </tr>
+        <tr style="margin:5px 0px;">
+            <td>跳转链接：</td>
+            <td><input type="text" name="rel" value="<?php echo $data['rel']?>" class="easyui-textbox" data-options="height:30"/></td>
+        </tr>
+      <tr style="margin:5px 0px;">
+          <td>排序：</td>
+          <td><input type="text" name="sort" class="easyui-numberbox" data-options="required:true,height:30"  value="<?php echo $data['sort']?>"/></td>
+      </tr>
+
+      <tr style="margin:5px 0px;">   
+          <td>是否显示：</td>
+          <td><input type="text" name="isshow" class="mune-state" class="easyui-switchbutton" data-options="onText:'显示',offText:'隐藏',required:true,height:30,width:30"  <?php if($data['isshow']==1) echo 'checked'?>/></td>
+          <!--<td><input type="radio" name="isshow" value="1" <?php if($data['isshow']==1){?>checked="checked"<?php }?>/>显示&nbsp;&nbsp;-->
+          <!--<input type="radio" name="isshow" value="2" <?php if($data['isshow']==2){?>checked="checked"<?php }?>/>隐藏&nbsp;</td>-->
+      </tr>
+        <input type="hidden" name="menuid" value="<?php echo $data['menuid']?>" />
+      <input type="hidden" name="op" value="edit" />
+   </table>
+ </form>
+</div>
+<script type="text/javascript">
+  $('#parentid_edit').combotree({
+    required:true,
+    height:30,
+    url:'{:url("adminMenu/getMenuTreeJSON")}?type=1'
+  });
+  //账号状态滑动按钮
+  $('.mune-state').switchbutton({
+      width : 65,
+      onText : '显示',
+      offText : '隐藏',
+  });
+</script>

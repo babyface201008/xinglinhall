@@ -1,0 +1,65 @@
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+</head>
+<style>
+	#logo img{
+		max-height:50px;
+		margin-left: 30px;
+	}
+</style>
+<body class="childrenBody" style="height: 100%">
+	<form class="layui-form" style="width:80%;height: 100%" enctype="multipart/form-data" method="post">
+		<input type="hidden" name="op" value="add">
+		<div class="layui-form-item">
+			<label class="layui-form-label">网站名称</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input webname" name="webname" lay-verify="required" placeholder="请输入网站名称">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">网站地址</label>
+			<div class="layui-input-block">
+				<input type="tel" class="layui-input linksUrl"  name="url" lay-verify="required|url" placeholder="请输入网站地址">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">排列顺序</label>
+			<div class="layui-input-block">
+				<input type="tel" class="layui-input linksUrl"  name="sort" lay-verify="number" placeholder="排列位置(由小排到大)">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">logo</label>
+			<div class="layui-input-block">
+				<input type="file" class="layui-upload-file logo"  name="logo"   placeholder="网站logo">
+				<span id="logo"></span>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否显示</label>
+			<div class="layui-input-block">
+				<input type="checkbox" name="isshow" class="homePage" title="显示" checked>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">网站简介</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入站点描述"  name="desc" class="layui-textarea linksDesc"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<input type="hidden" class="logourl" lay-verify="logo" name="logourl"   value="">
+				<button class="layui-btn" lay-submit="" lay-filter="addLinks">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+	</form>
+	<script>
+        var UPLOAD_URL='{:url("friendlink/uploadimg")}'
+        var index_URL='{:url("friendlink/index")}'
+        var linkSave_URL='{:url("friendlink/save")}'
+        var LOGO_URL='__PUBLIC__'+'upload/manage/'
+	</script>
+	<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+	<script type="text/javascript" src="__MANAGE__js/admin/linksAdd.js"></script>

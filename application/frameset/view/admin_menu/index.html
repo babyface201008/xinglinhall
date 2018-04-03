@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title>管理首页</title>
+
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" href="__ASSETS__css/jquery.treegrid.css" />
+	<link rel="stylesheet" href="__ASSETS__css/select2.min.css" />
+	<style>
+	.toolbar a:focus{
+		outline:none;
+	}
+
+
+</style>
+	{include file="public/head" /}
+
+
+	<div class="main-content">
+		<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="{:url('index/index')}">首页</a>
+					</li>
+					<li>
+						<a href="{:url('admin/index')}">管理员管理</a>
+					</li>
+					<li class="active">系统管理员</li>
+				</ul><!-- /.breadcrumb -->
+
+			</div>
+
+			<div class="page-content">
+				{include file="public/toolbar" /}
+
+				<div class="page-header">
+					<h1>
+						管理员管理
+						<small>
+							<i class="ace-icon fa fa-angle-double-right"></i>
+							系统管理员
+						</small>
+					</h1>
+				</div><!-- /.page-header -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="table-header">
+									菜单管理列表
+								</div>
+								<div>
+									<table id="adminmune-table" class="table table-striped table-bordered table-hover ">
+										<thead>
+										<tr>
+											<th >菜单名称</th>
+											<th >父级id</th>
+											<th >排序</th>
+											<th>跳转链接</th>
+											<th >图标</th>
+											<th >是否显示</th>
+											<th>操作</th>
+										</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- PAGE CONTENT ENDS -->
+						<!--添加管理员-->
+						<div class="modal fade" id="adminMuneAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content" id="adminMuneAddContent">
+
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+
+
+						<!--修改管理员-->
+						<div class="modal fade" id="adminMuneEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content" id="adminMuneEditContent">
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.page-content -->
+		</div>
+	</div><!-- /.main-content -->
+
+	<script type="text/javascript">
+        var getMenuListJSON = '{:url("adminMenu/getMenulistJSON")}';
+        var MenuAddurl = '{:url("adminMenu/add")}';
+        var MenuEditurl = '{:url("adminMenu/edit")}';
+        var MenuDelurl = '{:url("adminMenu/del")}';
+        var Menusaveurl = '{:url("adminMenu/save")}';
+        var adminMenuSwitchState = '{:url("adminMenu/muneSwitchState")}';
+        var MenuIconUrl = '__ASSETS__'
+
+	</script>
+	{include file="public/foot" /}
+	<script src="__ASSETS__js/jquery.dataTables.min.js"></script>
+	<script src="__ASSETS__js/jquery.dataTables.bootstrap.min.js"></script>
+	<script src="__ASSETS__js/dataTables.buttons.min.js"></script>
+	<script src="__ASSETS__js/buttons.flash.min.js"></script>
+	<script src="__ASSETS__js/buttons.html5.min.js"></script>
+	<script src="__ASSETS__js/buttons.print.min.js"></script>
+	<script src="__ASSETS__js/buttons.colVis.min.js"></script>
+	<script src="__ASSETS__js/select2.min.js"></script>
+	<script src="__ASSETS__js/jquery.treegrid.js"></script>
+
+	<!--<script type="text/javascript" src="__ASSETS__js/layer/layer.js"></script>-->
+	<script type="text/javascript" src="__ASSETS__js/admin/adminmenu.js"></script>

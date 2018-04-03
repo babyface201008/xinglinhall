@@ -1,0 +1,109 @@
+<!-- 数据列表 -->
+<table id="admingroup"></table>
+<!-- 顶部工具条 -->
+<div class="wraps">
+	<form id="admingroup-toolbar">
+		<div class="buts">
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="admingroupOpt.add();">新增</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-pencil',plain:true" onclick="admingroupOpt.edit();">修改</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-user',plain:true" onclick="admingroupOpt.linkmenu();">设置权限</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-delete',plain:true" onclick="admingroupOpt.delete();">删除</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-select_continuous_area',plain:true" onclick="admingroupOpt.redo();">取消选择</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_refresh',plain:true" onclick="admingroupOpt.refresh();">更新数据列表</a>
+		</div>
+	</form>
+</div>
+<!-- 新增弹窗 -->
+<div class="wraps">
+	<form id="admingroup-add">
+		<input type="hidden" name="op" value="add">
+		<table class="add_panel">
+			<tbody>
+
+			<tr>
+				<td class="label">
+					<label for="add-name">角色名称：</label>
+				</td>
+				<td>
+					<input type="text" class="admingroup" name="groupname"></input>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">角色描述：</label>
+				</td>
+				<td>
+					<textarea name="desc" class="desc" cols="30" rows="3"></textarea>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">账号状态：</label>
+				</td>
+				<td>
+					<input type="text" id="group-edit-state-button" class="group-edit-state-button"></input>
+					<input type="hidden" name="status" id="group-edit-state" class="group-edit-state"></input>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</form>
+</div>
+
+<!-- 编辑弹窗 -->
+<div class="wraps">
+	<form id="admingroup-edit">
+		<input type="hidden" name="admingroupid"></input>
+		<input type="hidden" name="op" value="edit">
+		<table class="add_panel">
+			<tbody>
+			<tr>
+				<td class="label">
+					<label for="add-name">角色名称：</label>
+				</td>
+				<td>
+					<input type="text" class="admingroup" name="groupname"></input>
+					<input type="hidden" class="groupid" name="groupid"></input>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">角色描述：</label>
+				</td>
+				<td>
+					<textarea name="desc" class="desc" cols="30" rows="3"></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td class="label textarea">
+					<label for="add-describe">账号状态：</label>
+				</td>
+				<td>
+					<input type="text" id="group-edit-state-button" class="group-edit-state-button"></input>
+					<input type="hidden" name="status" id="group-edit-state" class="group-edit-state"></input>
+				</td>
+			</tr>
+
+			</tbody>
+		</table>
+	</form>
+</div>
+<!-- 菜单弹窗 -->
+<div class="wraps">
+	<form id="munulist-edit">
+	</form>
+</div>
+<script type="text/javascript">
+	var getAdminGroupList = '{:url("AdminGroup/getAdminGroupListJSON")}',
+	getAdminGroupEditData = "{:url('AdminGroup/getAdminGroupEditJSON')}",
+	AdminGroupSswitchState = "{:url('AdminGroup/groupSwitchState')}",
+	getMenuListData="{:URL('AdminGroup/getMenuListJSON')}",
+	saveMenuListData="{:URL('AdminGroup/saveMenuListData')}",
+	saveAdminGroup = "{:url('AdminGroup/save')}",
+	deleteAdminGroup = "{:url('AdminGroup/delete')}";
+
+</script>
+<script type="text/javascript" src="__STATIC__js/admin/admingroup.js"></script>

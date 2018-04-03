@@ -1,0 +1,49 @@
+<div style="padding:10px 60px 20px 60px">
+    <form id="admin_edit" class="easyui-form" method="post" action='<?php echo site_url("admin/admin/save")?>?op=edit' data-options="validate:true,border:false">
+        <input type="hidden" name='adminid' value='<?php echo $data["adminid"]?>' >
+        <input type="hidden" name='adminname' value='<?php echo $data["adminname"]?>' >
+        <input type="hidden" name='islockedOld' value='<?php echo $data["islocked"]?>' >
+        <table cellpadding="5">
+            <tr>
+                <td>账号：</td>
+                <td><input class="easyui-textbox" type="text" name="adminname" value='<?php echo $data["adminname"]?>' data-options="required:true,readonly:true"></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input class="easyui-textbox" type="password" name="password"  data-options=""></td>
+            </tr>
+            <tr>
+                <td>姓名：</td>
+                <td><input class="easyui-textbox" type="text" name="realname" data-options="" value="<?php echo $data['realname']?>"></td>
+            </tr>
+            <tr>
+                <td>邮箱：</td>
+                <td><input class="easyui-textbox" type="text" name="email" data-options="validType:'email'" value="<?php echo $data['email']?>"></td>
+            </tr>
+            <tr>
+                <td>手机号：</td>
+                <td><input class="easyui-textbox" type="text" name="phone" data-options="" value="<?php echo $data['phone']?>"></td>
+            </tr>
+            <tr>
+                <td>是否锁定：</td>
+                <td>
+                    <select class="easyui-combobox" name="islocked" data-options="panelHeight:'auto'">
+                        <option value='0' >否</option>
+                        <option value='1' >是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>所属角色：</td>
+                <td>
+                    <?php foreach ($groupData as $k => $v) { ?>
+                    <input id='groupid<?php echo $k;?>' <?php if(in_array($v['groupid'], $groupid)){ echo "checked=true";} ?> type="checkbox" name='groupid[]' value='<?php echo $v["groupid"]?>'>
+                    <label style='cursor:pointer' for="groupid<?php echo $k;?>"><?php echo $v['groupname'];?></label>
+                    <?php }?>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+

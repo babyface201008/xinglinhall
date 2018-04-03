@@ -1,0 +1,47 @@
+<div style="padding:10px 60px 20px 60px">
+ <form id="menuAddForm" method="post" action="{:url('adminMenu/save')}">
+    <table id="menuAddTable" style="margin:10px;height:150px;">
+      <tr style="margin:5px 0px;">
+        <td>菜单名称：</td>
+        <td><input type="text" name="menuname" class="easyui-textbox" data-options="prompt:'请输入菜单名称',required:true,height:30" /></td>
+      </tr>
+      <tr style="">   
+          <td>父ID：</td>
+          <td>
+            <input id="parentid_add" name="parentid" value="0">
+          </td>
+      </tr>
+    <tr style="margin:5px 0px;">
+        <td>图标icon：</td>
+        <td><input type="text" name="icon"  class="easyui-textbox"  data-options="required:true,height:30" /></td>
+    </tr>
+    <tr style="margin:5px 0px;">
+        <td>链接：</td>
+        <td><input type="text" name="url"  class="easyui-textbox" data-options="required:true,height:30"/></td>
+    </tr>
+        <tr style="margin:5px 0px;">
+            <td>跳转链接：</td>
+            <td><input type="text" name="rel"  class="easyui-textbox" data-options="height:30"/></td>
+        </tr>
+      <tr style="margin:5px 0px;">
+          <td>排序：</td>
+          <td><input type="text" name="sort" class="easyui-numberbox" data-options="required:true,height:30"  value="1"/></td>
+      </tr>
+
+      <tr style="margin:5px 0px;">   
+          <td>是否显示：</td>
+          <td><input type="text" name="isshow" class="easyui-switchbutton" data-options="onText:'显示',offText:'隐藏',required:true,height:30" checked /></td>
+          <!--<td><input type="radio" name="isshow" value="1" checked="checked" />显示&nbsp;&nbsp;-->
+          <!--<input type="radio" name="isshow" value="2" />隐藏&nbsp;</td>-->
+      </tr>
+      <input type="hidden" name="op" value="add" />
+   </table>
+ </form>
+</div>
+<script type="text/javascript">
+  $('#parentid_add').combotree({
+    required:true,
+    height:30,
+    url:'{:url("adminMenu/getMenuTreeJSON")}?type=1'
+  });
+</script>

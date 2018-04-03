@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+</head>
+<style>
+	#nav_ad img{
+		height:100px;
+		margin: 10px 0 0  30px;
+	}
+	.float_img{
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+	}
+	.float_img i{
+		position: absolute;
+		top: 10px;;
+		right:0;
+	}
+</style>
+<body class="childrenBody" style="height: 100%">
+<form class="layui-form"  style="width: 80%" enctype="multipart/form-data" method="post">
+	<input type="hidden" name="op" value="edit">
+	<input type="hidden" name="navid" value="{$navData.navid}">
+	<div class="layui-form-item">
+		<label class="layui-form-label">菜单名称</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input navname" name="navname"  value="{$navData.navname}" lay-verify="required" placeholder="请输入菜单名称">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">父级菜单</label>
+		<div class="layui-input-block">
+			<select name="parentid" class="parentid"   data-id="{$navData.parentid}" lay-search=""  lay-verify="required" placeholder="直接选择或搜索选择">
+				<option value="0">顶级菜单</option>
+			</select>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">菜单地址</label>
+		<div class="layui-input-block">
+			<input type="tel" class="layui-input"  name="url"   value="{$navData.url}"  placeholder="请输入菜单地址"  readonly style="background: #cfcfcf">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">页面广告图</label>
+		<div class="layui-input-block">
+			<input type="file" class="layui-upload-file"  name="nav_ad"   placeholder="页面广告图">
+			<span id="nav_ad" style="">
+				{if isset($navData.att) && $navData.navname=='首页'}
+				{foreach $navData.att as $val}
+				<br>
+				<div class="float_img" data-url="{$val}" id="{$val|substr=0,-4}"  onclick="delimg(this)">
+					<img src="__PUBLIC__upload/manage/ad/150/{$val}" >
+					<i class="layui-icon" style="font-size: 14px; color:red;">&#x1006;</i>
+				</div>
+				{/foreach}
+				{elseif $navData.ad_src}
+				<img src="__PUBLIC__upload/manage/ad/{$navData.ad_src}" alt="">
+				{/if}
+			</span>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">广告图链接</label>
+		<div class="layui-input-block">
+			<input type="tel" class="layui-input"  name="ad_url"  value="{$navData.ad_url}" lay-verify="required" placeholder="广告图链接">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">排列顺序</label>
+		<div class="layui-input-block">
+			<input type="tel" class="layui-input"  name="sort"  value="{$navData.sort}" lay-verify="number" placeholder="排列位置(由小排到大)">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">是否显示</label>
+		<div class="layui-input-block">
+			<input type="checkbox" name="isshow"  title="显示"  {if $navData.isshow==1}checked{/if}>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<input type="hidden" class="ad_src" lay-verify="ad_src" name="ad_src"    value=",{$navData.ad_src}">
+			<input type="hidden" class="checkname"     value="{$navData.navname}">
+			<button class="layui-btn" lay-submit="" lay-filter="addnav">立即提交</button>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
+<script>
+    var UPLOAD_URL='{:url("nav/uploadimg")}'
+    var index_URL='{:url("nav/index")}'
+    var navSave_URL='{:url("nav/save")}'
+    var LOGO_URL='__PUBLIC__'+'upload/manage/ad/'
+    var getNavListJson='{:url("nav/getNavListJson")}'
+</script>
+<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+<script type="text/javascript" src="__MANAGE__js/admin/navAdd.js"></script>

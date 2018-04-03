@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<title>后台管理-权限设置</title>
+
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<link rel="stylesheet" href="__ASSETS__css/jquery.treegrid.css" />
+	<link rel="stylesheet" href="__ASSETS__css/select2.min.css" />
+	{include file="public/head" /}
+
+
+
+	<div class="main-content">
+		<div class="main-content-inner">
+			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+				<ul class="breadcrumb">
+					<li>
+						<i class="ace-icon fa fa-home home-icon"></i>
+						<a href="{:url('index/index')}">首页</a>
+					</li>
+					<li class="active">权限设置</li>
+				</ul><!-- /.breadcrumb -->
+
+			</div>
+
+			<div class="page-content">
+				{include file="public/toolbar" /}
+
+				<div class="page-header">
+					<h1>
+						管理员管理
+						<small>
+							<i class="ace-icon fa fa-angle-double-right"></i>
+							系统管理员
+						</small>
+					</h1>
+				</div><!-- /.page-header -->
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="table-header">
+									菜单管理列表
+								</div>
+								<div>
+									<table id="admingroup-table" class="table table-striped table-bordered table-hover ">
+										<thead>
+										<tr>
+											<th >角色名称</th>
+											<th >创建时间</th>
+											<th >角色描述</th>
+											<th>状态</th>
+											<th>操作</th>
+										</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- PAGE CONTENT ENDS -->
+						<!--添加管理员-->
+						<div class="modal fade" id="admingroupAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content" id="admingroupAddContent">
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+
+
+						<!--修改管理员-->
+						<div class="modal fade" id="admingroupEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content" id="admingroupEditContent">
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /.modal -->
+
+						<!--权限管理-->
+						<div class="modal fade" id="admingroupMuneModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content" id="admingroupMuneContent">
+								</div><!-- /.modal-content -->
+							</div><!-- /.modal-dialog -->
+						</div><!-- /
+
+
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.page-content -->
+		</div>
+	</div><!-- /.main-content -->
+
+	<script type="text/javascript">
+        var getGroupListJSON = '{:url("adminGroup/getAdminGroupListJSON")}';
+        var GroupAddurl = '{:url("adminGroup/add")}';
+        var GroupEditurl = '{:url("adminGroup/getAdminGroupEditJSON")}';
+        var GroupDelurl = '{:url("adminGroup/delete")}';
+        var Groupsaveurl = '{:url("adminGroup/save")}';
+        var getMenuListJSON = '{:url("adminGroup/getMenuListJSON")}';
+	</script>
+	{include file="public/foot" /}
+	<script src="__ASSETS__js/jquery.dataTables.min.js"></script>
+	<script src="__ASSETS__js/jquery.dataTables.bootstrap.min.js"></script>
+	<script src="__ASSETS__js/dataTables.buttons.min.js"></script>
+	<script type="text/javascript" src="__ASSETS__js/Function.js"></script>
+	<script type="text/javascript" src="__ASSETS__js/layer/layer.js"></script>
+	<script type="text/javascript" src="__ASSETS__js/admin/admingroup.js"></script>

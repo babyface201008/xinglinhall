@@ -1,0 +1,107 @@
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/ueditor.all.min.js"> </script>
+	<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<style>
+	#images img{
+		height:75px;
+		margin-left: 20px;
+	}
+	#sourceimg img{
+		height:75px;
+		margin-left: 15px;
+	}
+	.float_img{
+		display: inline-block;
+		cursor: pointer;
+	}
+	.float_img i{
+		position: absolute;
+		top:0;
+	}
+</style>
+<body class="childrenBody" style="height: 100%">
+	<form class="layui-form" style="width:80%;height: 100%" enctype="multipart/form-data" method="post">
+		<input type="hidden" name="op" value="add">
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品名称</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="prodname" lay-verify="required" placeholder="请输入网站名称">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品分类</label>
+			<div class="layui-input-block">
+				<select name="catid" lay-verify="required" class="catid"  lay-search="" placeholder="直接选择或搜索选择">
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品主图</label>
+			<div class="layui-input-block">
+				<input type="file" class="layui-upload-file"  name="img"   placeholder="网站logo">
+				<span id="sourceimg"></span>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品附图</label>
+			<div class="layui-input-block">
+				<input type="file" class="layui-upload-file"  name="att"   placeholder="网站logo">
+				<span id="images"></span>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品排序</label>
+			<div class="layui-input-block">
+				<input type="tel" class="layui-input"  name="sort" lay-verify="number" value="1" placeholder="排列位置(由小排到大)">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否上架</label>
+			<div class="layui-input-block">
+				<input type="checkbox" name="isshow"  title="上架" checked>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品简介</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入产品描述"  name="intro" class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品详情</label>
+			<div class="layui-input-block">
+				<script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<input type="hidden" class="sourceimg"  name="sourceimg"   value="">
+				<input type="hidden" class="images"  name="images"   value="">
+				<button class="layui-btn" lay-submit="" lay-filter="addProduct">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+	</form>
+	<script>
+        var UPLOAD_URL='{:url("product/uploadimg")}'
+        var layedit_UPLOAD_URL='{:url("base/uploadimg")}'
+        var index_URL='{:url("product/index")}'
+        var ProductSave_URL='{:url("product/save")}'
+        var delimg_URL='{:url("product/delimg")}'
+        var LOGO_URL='__PUBLIC__'+'upload/product/'
+        var getCategoryListURL='{:url("category/getCategoryListJson")}'
+	</script>
+	<script type="text/javascript">
+		//实例化编辑器
+		//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+		var ue = UE.getEditor('editor',{
+			textarea : 'product_desc'
+		});
+	</script>
+	<script src="__MANAGE__js/plugins/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+	<script type="text/javascript" src="__MANAGE__js/admin/productAdd.js"></script>

@@ -1,0 +1,490 @@
+
+        <div id="tt" class="easyui-tabs" style="margin-top: 20px;padding-left: 20px">
+            <div title="网站配置" style="padding:20px;display:none;">
+                <form id="system" method="post">
+                <table class="add_panel">
+                    <tbody>
+                    <tr>
+                        <td class="label">
+                            是否开启运费：
+                        </td>
+                        <td>
+                            <input class="easyui-switchbutton" id="is_express" name="is_express" data-options="onText:'开',offText:'关'" <?php echo $is_express==1?'checked':'';?> >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            运费：
+                        </td>
+                        <td>
+                            <input type="text" class="system-express" name="express_val" value="<?php echo $express_val?>" <?php if($express_val==0){ ?>data-options="disabled:true" <?php }?> >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            订购热线：
+                        </td>
+                        <td>
+                            <input type="text" class="system-order-tel" name="order_tel" value="<?php echo $order_tel?>"  />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            咨询热线：
+                        </td>
+                        <td>
+                            <input type="text" class="system-consult-tel" name="consult_tel" value="<?php echo $consult_tel?>"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            版权所有：
+                        </td>
+                        <td>
+                            <input type="text" class="system-colophon" name="colophon" value="<?php echo $colophon?>" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            订单提醒：
+                        </td>
+                        <td>
+                            <input class="easyui-switchbutton" name="orderPrompt" data-options="onText:'开',offText:'关'" <?php echo $orderPrompt==1?'checked':'';?> >（刷新页面后生效）
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                    <a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 50px"  data-msg="system" class="easyui-linkbutton system-save" url="{:url('setting/saveSystem')}">保存设置</a>
+                </form>
+            </div>
+            <div title="邮件配置"  style="overflow:auto;padding:20px;display:none;">
+                <form id="email" method="post">
+                <table class="add_panel">
+                    <tbody>
+                    <tr>
+                        <td class="label">
+                            邮件服务器：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="SMTP_SERVER" value="<?php echo $SMTP_SERVER?>" class="easyui-textbox">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            邮件服务器端口：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="SMTP_PORT" value="<?php echo $SMTP_PORT?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            SMTP服务器的用户邮箱：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="SMTP_USER_EMAIL" value="<?php echo $SMTP_USER_EMAIL?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            SMTP服务器账户名：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment"  name="SMTP_USER" value="<?php echo $SMTP_USER?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            SMTP服务器账户密码：
+                        </td>
+                        <td>
+                            <input type="password" class="system-conment"  name="SMTP_PWD" value="<?php echo $SMTP_PWD?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            发送邮件类型：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment"  name="SMTP_MAIL_TYPE" value="<?php echo $SMTP_MAIL_TYPE?>" class="easyui-textbox" />(HTML,TXT 注意都是大写)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            超时时间：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="SMTP_TIME_OUT" value="<?php echo $SMTP_TIME_OUT?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            邮箱验证：
+                        </td>
+                        <td>
+                            <input class="easyui-switchbutton" name="SMTP_AUTH" data-options="onText:'开',offText:'关'" <?php echo $SMTP_AUTH==1?'checked':'';?> >
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 30px "  data-msg="email" class="easyui-linkbutton system-save" url="{:url('setting/saveEmail')}">保存设置</a>
+                </form>
+            </div>
+            <div title="短信配置"  style="overflow:auto;padding:20px;display:none;">
+                <form id="sms" method="post">
+                <table class="add_panel">
+                    <tbody>
+                    <tr>
+                        <td class="label">
+                            短信企业ID：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment"  name="enterpriseID" value="<?php echo $enterpriseID?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            短信登陆名：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="loginName" value="<?php echo $loginName?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            短信登录密码：
+                        </td>
+                        <td>
+                            <input type="password" class="system-conment" name="password" value="<?php echo $password?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            短信接口：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="url" value="<?php echo $url?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">
+                            短信扩展：
+                        </td>
+                        <td>
+                            <input type="text" class="system-conment" name="subPort" value="<?php echo $subPort?>" class="easyui-textbox" />
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 30px" data-msg="sms" class="easyui-linkbutton system-save" url="{:url('setting/saveSMS')}">保存设置</a>
+                </form>
+            </div>
+            <div title="积分配置"  style="overflow:auto;padding:20px;display:none;">
+                <form id="system-score" method="post">
+                    <table class="add_panel">
+                        <tbody>
+                        <tr>
+                            <td class="label">
+                                注册：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="register" value="<?php echo $register?>" class="easyui-textbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                手机号：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="phone" value="<?php echo $phone?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                邮箱：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="email" value="<?php echo $email?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                头像：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num"  name="face" value="<?php echo $face?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                昵称：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num"  name="nickname" value="<?php echo $nickname?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                QQ：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num"  name="qq" value="<?php echo $qq?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                性别：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num"  name="sex" value="<?php echo $sex?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                真实姓名：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num"  name="real_name" value="<?php echo $real_name?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                常用药：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="common_medicine" value="<?php echo $common_medicine?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                生日：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="birthday" value="<?php echo $birthday?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                身高：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="height" value="<?php echo $height?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                体重：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="weight" value="<?php echo $weight?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                婚姻状况：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="maritalStatus" value="<?php echo $maritalStatus?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                月收入：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="monthcome" value="<?php echo $monthcome?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                工作性质：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="common_medicine" value="<?php echo $occupation?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                购买：
+                            </td>
+                            <td>
+                                <input type="text" class="system-num" name="consume" value="<?php echo $consume?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"  style="margin:20px 0 0 30px "  data-msg="score" class="easyui-linkbutton system-save" url="{:url('setting/saveScore')}">保存设置</a>
+                </form>
+            </div>
+            <div title="seo设置"  style="overflow:auto;padding:20px;display:none;">
+                <form id="seo" method="post">
+                    <table class="add_panel">
+                        <tbody>
+                        <tr>
+                            <td class="label">
+                                首页seo网站title：
+                            </td>
+                            <td>
+                                <input type="text" class="system-title" name="title" value="<?php echo $title?>"  class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                首页seo网站关键字：
+                            </td>
+                            <td>
+                                <input type="text" class="system-conment" name="keywords" value="<?php echo $keywords?>" class="easyui-textbox" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                首页seo网站描述：
+                            </td>
+                            <td>
+                                <input type="text" class="system-description" name="description" value="<?php echo $description?>" class="easyui-textbox" />
+                            </td>
+                        </tr >
+                        <tr style="margin-bottom: 20px"><td class="label">&nbsp;</td></tr >
+                        <tr>
+                            <td class="label">
+                                最新药品SEOtitle：
+                            </td>
+                            <td>
+                                <input type="text" class="system-title" name="product_title" value="<?php echo $product_title?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                最新药品SEO网站关键字：
+                            </td>
+                            <td>
+                                <input type="text" class="system-conment" name="product_keywords" value="<?php echo $product_keywords?>" class="easyui-textbox" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                最新药品SEO网站描述：
+                            </td>
+                            <td>
+                                <input type="text" class="system-description" name="product_description" value="<?php echo $product_description?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr style="margin-bottom: 20px"><td class="label">&nbsp;</td></tr >
+
+                        <tr>
+                            <td class="label">
+                                健康资讯SEOtitle：
+                            </td>
+                            <td>
+                                <input type="text" class="system-title" name="news_title" value="<?php echo $news_title?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                健康资讯SEO关键字：
+                            </td>
+                            <td>
+                                <input type="text" class="system-conment" name="news_keywords" value="<?php echo $news_keywords?>" class="easyui-textbox" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                健康资讯SEO描述：
+                            </td>
+                            <td>
+                                <input type="text" class="system-description" name="news_description" value="<?php echo $news_description?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr style="margin-bottom: 20px"><td class="label">&nbsp;</td></tr >
+
+                        <tr>
+                            <td class="label">
+                                用药指导SEOtitle：
+                            </td>
+                            <td>
+                                <input type="text" class="system-title" name="medication_title" value="<?php echo $medication_title?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                用药指导SEO关键字：
+                            </td>
+                            <td>
+                                <input type="text" class="system-conment" name="medication_keywords" value="<?php echo $medication_keywords?>" class="easyui-textbox" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                用药指导SEO描述：
+                            </td>
+                            <td>
+                                <input type="text" class="system-description" name="medication_description" value="<?php echo $medication_description?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr style="margin-bottom: 20px"><td class="label">&nbsp;</td></tr >
+
+                        <tr>
+                            <td class="label">
+                                健康问答SEOtitle：
+                            </td>
+                            <td>
+                                <input type="text" class="system-title" name="question_title" value="<?php echo $question_title?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                健康问答SEO关键字：
+                            </td>
+                            <td>
+                                <input type="text" class="system-conment" name="question_keywords" value="<?php echo $question_keywords?>" class="easyui-textbox" />
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="label">
+                                健康问答SEO描述：
+                            </td>
+                            <td>
+                                <input type="text" class="system-description" name="question_description" value="<?php echo $question_description?>" class="easyui-textbox" />
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="javascript:void(0)" data-options="iconCls:'icon-bullet_wrench'"   data-msg="seo" style="margin:20px 0 0 30px" class="easyui-linkbutton system-save" url="{:url('setting/saveSeo')}">保存设置</a>
+                </form>
+            </div>
+            <div data-title="编辑充值设置"    style="margin-top: 20px ;display: none">
+                <!-- 数据列表 -->
+                <table id="recharge_money"></table>
+                <!-- 顶部工具条 -->
+                <div class="wraps">
+                    <form id="recharge_money-toolbar">
+                        <div class="buts">
+                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="recharge_moneyOpt.add();">新增</a>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-delete',plain:true" onclick="recharge_moneyOpt.delete();">删除</a>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_refresh',plain:true" onclick="recharge_moneyOpt.refresh();">更新数据列表</a>
+                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-bin_empty',plain:true" onclick="recharge_moneyOpt.redo();">取消所选行</a>
+                        </div>
+                        <input type="hidden" id="recharge_money_id" />
+                        <input type="hidden" id="recharge_money-rwoid" value="0">
+                    </form>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript">
+    var saveSystem = '{:url("setting/saveSystem")}',
+        getSystemData = "{:url('setting/getSystemDataJSON')}",
+        rechargeSetUrl = "{:url('recharge_money/index')}";
+    var getRecharge_moneyList ="{:url('recharge_money/getRecharge_moneyListJSON')}" ,
+        switchMoneyState ="{:url('recharge_money/ischeckEditJSON')}",
+        saveUrl ="{:url('recharge_money/save')}" ,
+        getLastIdUrl ="{:url('recharge_money/getLastId')}" ,
+        deleteRecharge_money ="{:url('recharge_money/deleteRecharge_money')}";
+    </script>
+<!--<script  src="__STATIC__js/recharge_money.js"></script>-->
+<script type="text/javascript" src="__STATIC__js/admin/setting.js"></script>

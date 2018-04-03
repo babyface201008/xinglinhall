@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+<title>{$basic.webname}-首页</title>
+<link rel="stylesheet" rev="stylesheet" href="__INDEX__css/base.css" type="text/css" />
+<link rel="stylesheet" rev="stylesheet" href="__INDEX__css/index.css" type="text/css" />
+<script type="text/javascript" src="__INDEX__js/jquery.min.js"></script>
+</head>
+<body>
+{include file="public/head" /}
+
+<div id="banner_tabs" class="flexslider">
+        <ul class="slides">
+            {foreach $banner as $v}
+            <li>
+                <a title="" target="_blank" href="{:url($indexData.ad_url)}">
+                    <img width="1920" height="482" alt="" style="background: url(__PUBLIC__upload/manage/ad/{$v}) no-repeat center;" src="__INDEX__images/alpha.png">
+                </a>
+            </li>
+            {/foreach}
+        </ul>
+        <ul class="flex-direction-nav">
+            <li><a class="flex-prev" href="javascript:;">Previous</a></li>
+            <li><a class="flex-next" href="javascript:;">Next</a></li>
+        </ul>
+        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
+            {foreach $banner as $k => $v}
+            <li><a>{$k+1}</a></li>
+            {/foreach}
+        </ol>
+    </div>
+<!--产品服务-->
+<div class="wh clear">
+  <div class="pro_title">
+    	<h2>产品服务</h2>
+        <p>Service</p>
+      <i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
+    </div>
+    <ul class="pro_ul wh fn-left">
+        {foreach $cateData as $k =>$v}
+        {if $k<4}
+        <li>
+            <div class="pro_txt">
+                <h2>{$v.catname}<i class="line"></i></h2>
+                <p>{$v.intro}<a class="red" href="{:url('product/index','catid='.$v.catid)}">[更多]</a></p>
+                <span><a class="cor" href="{:url('product/index','catid='.$v.catid)}">点击<br />咨询</a></span>
+            </div>
+        </li>
+        {/if}
+        {/foreach}
+    </ul>
+</div>
+<!--四大优势-->
+<div class="four_ys clear">
+	<div class="wh">
+    	<div class="pro_title">
+    		<h2>四大优势</h2>
+        	<p>Advantages</p>
+      		<i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
+    	</div>
+        <ul class="four_ul">
+        	<li id="fast">
+            	<span class="ico1"><i></i></span>
+                <b>开户快</b>
+                <p>资质齐全，最快当天下户，长期稳定投放。</p>
+            </li>
+            <li id="good">
+            	<span class="ico2"><i></i></span>
+                <b>政策好</b>
+                <p>厂商关系牢固，掌握厂商最新政策，点数优势明显。</p>
+            </li>
+            <li id="weight">
+            	<span class="ico3"><i></i></span>
+                <b>重运营</b>
+                <p>强大的运营团队，精通各平台产品运营，以ROI为导向。</p>
+            </li>
+            <li class="mrg" id="height">
+            	<span class="ico4"><i></i></span>
+                <b>高转化</b>
+                <p>效果转化明显，客户生命周期长，客情黏性高。</p>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--合作伙伴-->
+<div class="Partner_box">
+	<div class="wh">
+    	<div class="Partner_title">
+    		<h2>合作伙伴</h2>
+        	<p>PARTNER</p>
+      		<i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
+    	</div>
+        <div class="friend-Link">
+    <div class="left-arrow"><a>左边箭头</a></div>
+    <div class="fl-pic">
+      <ul>
+        <!-- 图片合作伙伴 -->
+          {foreach $friendlink as $k2 =>$v2}
+          <li>
+              <a  href="{$v2.url}"><img src="__PUBLIC__upload/manage/{$v2.logo}" alt="" width="160" height="80" /><div class="pic_c">{$v2.webname}</div></a>
+          </li>
+          {/foreach}
+      </ul>
+    </div>
+    <div class="right-arrow"><a>右边箭头</a></div>
+  </div>
+    </div>
+</div>
+<!--底部导航列表-->
+{include file="public/foot" /}
+
+</body>
+<script type="text/javascript" src="__INDEX__js/slidelf.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".fl-pic").slidelf({
+		"prev":"left-arrow",
+		"next":"right-arrow",
+		"speed":1000
+	});
+});
+</script>
+<script src="__INDEX__js/slider.js"></script>
+	<script type="text/javascript">
+    $(function() {
+        var bannerSlider = new Slider($('#banner_tabs'), {
+            time: 5000,
+            delay: 400,
+            event: 'hover',
+            auto: true,
+            mode: 'fade',
+            controller: $('#bannerCtrl'),
+            activeControllerCls: 'active'
+        });
+        $('#banner_tabs .flex-prev').click(function() {
+            bannerSlider.prev()
+        });
+        $('#banner_tabs .flex-next').click(function() {
+            bannerSlider.next()
+        });
+    })
+    </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#nav li").hover(function(){
+		$(this).find("div").slideDown("slow");	
+	},function(){
+		$(this).find("div").slideUp("fast");	
+	});
+});
+</script>
+</html>

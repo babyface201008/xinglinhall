@@ -1,0 +1,55 @@
+	<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="__MANAGE__css/news.css" media="all" />
+</head>
+	<style>
+		#logo img{
+			height:100px;
+			margin-left: 30px;
+		}
+		#QR_code img{
+			height:100px;
+			margin-left: 30px;
+		}
+	</style>
+<body class="childrenBody" style="height: 100%">
+<blockquote class="layui-elem-quote news_search">
+</blockquote>
+<form class="layui-form" style="width:80%;height: 100%" enctype="multipart/form-data" method="post">
+	{foreach $setData as $val}
+	{if $val.variable == 'QR_code' || $val.variable == 'logo'}
+	<div class="layui-form-item">
+		<label class="layui-form-label">{$val.desc}：</label>
+		<div class="layui-input-block">
+			<input type="file" class="layui-upload-file"  name="{$val.variable}"   placeholder="{$val.desc}">
+			<span id="{$val.variable}" >
+				<img src="__PUBLIC__upload/manage/{$val.value}" alt="">
+			</span>
+		</div>
+	</div>
+
+	{else}
+	<div class="layui-form-item">
+		<label class="layui-form-label">{$val.desc}：</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" name="{$val.variable}" lay-verify="required"  value="{$val.value}" placeholder="请输入{$val.desc}">
+		</div>
+	</div>
+	{/if}
+	{/foreach}
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<input type="hidden" class="QR_code" name="QR_code" value="{$codesrc}">
+			<input type="hidden" class="logo" name="logo" value="{$logosrc}">
+			<button class="layui-btn" lay-submit="" lay-filter="addsetting">立即提交</button>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
+<script>
+    var UPLOAD_URL='{:url("basic/uploadimg")}'
+    var LOGO_URL='__PUBLIC__'+'upload/manage/'
+    var basicSave_URL='{:url("basic/save")}'
+</script>
+<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+<script type="text/javascript" src="__MANAGE__js/admin/basicAdd.js"></script>

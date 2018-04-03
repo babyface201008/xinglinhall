@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+<body class="childrenBody" style="height: 100%">
+
+	<form class="layui-form" style="width:80%;height: 100%">
+		<input type="hidden" name="op" value="add">
+		<div class="layui-form-item">
+			<label class="layui-form-label">登录名</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input adminname" name="adminname" lay-verify="required" placeholder="请输入登录名">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">密码</label>
+			<div class="layui-input-block">
+				<input type="password" class="layui-input password" name="password" lay-verify="required" placeholder="请输入密码">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">姓名</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input realname" name="realname" lay-verify="" placeholder="请输入姓名">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">手机号</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input phone" name="phone" lay-verify="" placeholder="请输入手机号">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">邮箱</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input email" name="email" lay-verify="" placeholder="请输入邮箱">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">是否锁定</label>
+			<div class="layui-input-block">
+				<select name="islocked" lay-verify="">
+					<option value="0">否</option>
+					<option value="1">是</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit="" lay-filter="addAdmin">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		</div>
+	</form>
+</body>
+<script>
+	var index='{:url("admin/index")}';
+	var saveAdminUrl='{:url("admin/save")}';
+</script>
+<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+<script type="text/javascript" src="__MANAGE__js/admin/adminAdd.js"></script>

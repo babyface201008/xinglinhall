@@ -1,0 +1,33 @@
+
+		<input type="hidden" name="op" value="add">
+		<table class="add_panel">
+			<tbody>
+			<tr>
+				<td width="30px">
+					<label for="add-name">登录账号：</label>
+				</td>
+				<td>
+					<input type="text" class="admin" name="adminname"></input>
+				</td>
+			</tr>
+			<tr>
+				<td class="textarea">
+					<label for="add-describe">登录密码：</label>
+				</td>
+				<td>
+					<input type="text" class="password" id="addpassword" name="password"></input>
+					<span class="link randpassword">随机密码</span>
+				</td>
+			</tr>
+			<tr>
+				<td>所属角色：</td>
+				<td>
+					<?php if($list){ foreach ($list as $k => $v) { ?>
+					<input id="groupid0" type="checkbox" name="groupid[]" value="<?php echo $v['groupid'];?>">
+					<label style="cursor:pointer" for="groupid0"><?php echo $v['groupname'];?></label>
+					<?}}php?>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+
