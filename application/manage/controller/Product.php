@@ -23,7 +23,7 @@ class Product extends Base{
         $this->ProductModel = new ProductModel();
     }
     /**
-     * 显示合作伙伴列表页
+     * 显示列表页
      */
     public function index(){
         return $this->fetch('product/index');
@@ -34,7 +34,7 @@ class Product extends Base{
     }
 
     /**
-     * 编辑菜单
+     * 编辑
      */
     public function edit(){
         $productid = input('get.productid');
@@ -91,8 +91,10 @@ class Product extends Base{
         $postData = input('post.');
         $rule = [
             ['prodname','require','产品名称不能为空!'],
-           /* ['sourceimg','require','产品主图不能为空!'],*/
+            ['sourceimg','require','产品图不能为空!'],
             ['catid','require','产品分类不能为空!'],
+            ['standard','require','产品规格不能为空!'],
+            ['price','require','产品价格不能为空!']
         ];
         if($postData['op'] == 'edit'){//编辑
             $rule []= ['productid','require','请选择编辑数据!'];
@@ -102,30 +104,30 @@ class Product extends Base{
             //验证不通过
             $this->_error($validate->getError());
         }
-//        编辑数据
+
+        //编辑数据
         $data = array(
             'prodname'=>$postData['prodname'],
             'catid'=>$postData['catid'],
             'sourceimg'=>$postData['sourceimg'],
-            'image'=>trim($postData['images'],','),
             'sort'=>$postData['sort'],
+            'standard'=>$postData['standard'],
+            'price'=>$postData['price'],
+            'advantage'=>$postData['advantage'],
+            'usemethod'=>$postData['usemethod'],
+            'result'=>$postData['result'],
             'intro'=>$postData['intro'],
             'isshow'=>input('post.isshow')=='on'?'1':0,
-            'desc'=>$postData['product_desc']
         );
         if($postData['op'] == 'add'){//添加
-            $checkName = ProductModel::getByProdname($postData['prodname']);
-            //判断菜单名不要重复
-            if($checkName){
-                $this->_error('产品名已存在,请重新输入');
-            }
+
             $data['createtime']=time();
                 //添加后台用户信息
             if($this->ProductModel->save($data)){
                 $productid= $this->ProductModel->productid;
-//                把图片从临时移至相应文件夹
+                //把图片从临时移至相应文件夹
                 $uploadConfig=config('upload');
-//                主图生成缩略图
+                //主图生成缩略图
                 if(is_file($uploadConfig['path'].'product/'.$postData['sourceimg'])){
                     $image = \think\Image::open($uploadConfig['path'].'product/'.$postData['sourceimg']);
                     checkPath($uploadConfig['path'].'manage/product/'.$productid.'/');
@@ -137,7 +139,7 @@ class Product extends Base{
                     unlink($uploadConfig['path'].'product/'.$postData['sourceimg']);
 
                 }
-//               附图生成缩略图
+                // 附图生成缩略图
                 if($postData['images']){
                     $attimg=explode(',',trim($postData['images'],','));
                     foreach ($attimg as $value ){
@@ -157,11 +159,7 @@ class Product extends Base{
             }
         }elseif($postData['op'] == 'edit'){//修改
             $productid=$postData['productid'];
-            $checkproductName = $this->ProductModel->where("prodname='{$postData['prodname']}' and productid !='{$productid}'")->find();
-            //判断菜单名不要重复
-            if($checkproductName){
-                $this->_error('产品名已存在,请重新输入');
-            }
+
             //启动事务
             Db::startTrans();
             try{

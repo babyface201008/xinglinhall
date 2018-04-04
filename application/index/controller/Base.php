@@ -7,11 +7,8 @@
  */
 namespace app\index\controller;
 use think\Controller;
-use app\common\model\Nav;
 use app\common\model\Setting;
-use app\common\model\FriendLink;
-use app\common\model\Category;
-use app\common\model\SolutionType;
+
 
 class Base extends Controller{
 
@@ -23,61 +20,12 @@ class Base extends Controller{
      */
     public function __construct(){
         parent::__construct();
-        $this->NavModel = new Nav();
-        $this->SettingModel = new Setting();
-        $this->FriendlinkModel = new FriendLink();
-        $this->CategoryModel = new Category();
-        $this->SolutionTypeModel = new SolutionType();
-//       获取头部
-        $this->getNavList();
-        $this->getfootList();
-    }
-    /*
-    * 获取头部导航
-    */
-    public function getNavList(){
 
-        $basic= $this->SettingModel->getListInfo("code='basic'");
-        $category=$this->CategoryModel->where('isshow','1')->order('sort','asc')->select()->toArray();
-        $Solutiontype=$this->SolutionTypeModel->where('isshow','1')->order('sort','asc')->select()->toArray();
-        //获取列表
-        $list = $this->NavModel->where('isshow','1')->order('parentid','asc')->order('sort','asc')->select()->toArray();
-        $navData = tree_array2($list,'navid','parentid');
-        foreach ($navData as$k=> $item) {
-            if ($item['navname'] == '产品服务') {
-                $navData [$k]['children'] = $category;
-            };
-            if ($item['navname'] == '解决方案') {
-                $navData [$k]['children'] = $Solutiontype;
-            };
-        }
 
-//            获取控制器名称
-        $request = request();
-        $controller=strtolower($request->controller().'/index');
-        $this->assign('controller',$controller);
-        $this->assign('basic',$basic);
-        $this->assign('category',$category);
-        $this->assign('navData',$navData);
-    }
-
-    /*
-    * 获取尾部导航
-    */
-    public function getfootList(){
-
-        //获取列表
-        $friendlink = $this->FriendlinkModel->where('isshow','1')->order('sort','asc')->order('createtime','asc')->select()->toArray();
-        if($friendlink){
-            foreach ($friendlink as $key =>$item){
-                if($item['url']=='#'){
-                    $friendlink[$key]['url']='javascript:viod(0)';
-                }
-            }
-
-        }
-        $this->assign('friendlink',$friendlink);
-
+        //获取网站配置
+        $settingModel = new Setting();
+        $arrSetting = $settingModel->getListInfo("code='basic'");
+        $this->assign('arrSetting',$arrSetting);
     }
 
     /**
@@ -116,6 +64,17 @@ class Base extends Controller{
     public function _data($value){
         $data['code'] = 200;
         $data['data'] = $value;
+        die(json_encode($data));
+    }
+
+    /**
+     * 数据信息
+     * @param String  $data 数据
+     * @return void
+     */
+    public function _data1($value){
+        $data['status'] = 'success';
+        $data['msg'] = $value;
         die(json_encode($data));
     }
 

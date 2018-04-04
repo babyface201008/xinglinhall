@@ -1,0 +1,122 @@
+<div class="car-title"><h2>购物车</h2></div>
+
+<div class="car-head">
+    <div class="car-head-check">
+        <input type="checkbox" id="all-checked">
+        <span>全选</span>
+    </div>
+    <div class="car-head-name"><span>商品</span></div>
+    <div class="car-head-sprice"><span>单价</span></div>
+    <div class="car-head-counts"><span>数量</span></div>
+    <div class="car-head-tprice"><span>总价</span></div>
+</div>
+<div class="car-content">
+
+    <div class="car-content-items" id="pro-id">
+        <input type="checkbox" class="car-content-check">
+        <input type="hidden" class="car-content-id" value="100001">
+        <span class="car-content-name">玻尿酸修护补水精华液</span>
+        <input type="number" class="car-content-sprice" value="400" readonly="true">
+        <span class="counts-change-minus">-</span>
+        <input type="number" class="car-content-counts" value="4" readonly="true">
+        <span class="counts-change-plus">+</span>
+        <input type="number" class="car-content-tprice" value="1600" readonly="true">
+        <span class="pro-delete">x</span>
+    </div>
+
+</div>
+
+
+<div class="car-tail">
+    <div class="car-settle">
+        <label>总计</label>
+        <i class="fa fa-rmb"></i>
+        <span id="shop-car-amounts">0</span>
+    </div>
+    <button id="shop-car-settle-btn">结算</button>
+</div>
+<script type="text/javascript">
+    /* ---------- 购物车数量变化事件监听---------------------*/
+    $(".car-content-counts").change(function () {
+        var counts = Number($(this).val());
+        var sprice = ($($(this).parent()).children("input[class='car-content-sprice']").val());
+        var tprice = counts*sprice;
+        $($(this).parent()).children("input[class='car-content-tprice']").val(tprice);
+    });
+
+    /* -----------------购物车全选------------------------*/
+    $("#all-checked").click(function () {
+        if ($("#all-checked").prop("checked")) {
+            $(".car-content-items").children("input[type='checkbox']").prop("checked", true);
+        }
+        else{
+            $(".car-content-items").children("input[type='checkbox']").prop("checked", false);
+        }
+        calc_total_amount();
+    });
+    /* -----------------------购物车数量加减-----------------------*/
+    $(".counts-change-minus").click(function () {      /* ------购物车数量减--*/
+        var pcount = Number($($(this).parent()).children("input[class='car-content-counts']").val());
+        var sprice = Number($($(this).parent()).children("input[class='car-content-sprice']").val());
+        if (pcount > 1) {
+            pcount = pcount -1;
+            $($(this).parent()).children("input[class='car-content-counts']").val(pcount);
+            $($(this).parent()).children("input[class='car-content-tprice']").val(pcount*sprice);
+            calc_total_amount();
+        }
+    });
+    $(".counts-change-plus").click(function () {      /* ------购物车数量加--*/
+        var pcount = Number($($(this).parent()).children("input[class='car-content-counts']").val());
+        var sprice = Number($($(this).parent()).children("input[class='car-content-sprice']").val());
+        if (pcount < 100) {
+            pcount = pcount + 1;
+            $($(this).parent()).children("input[class='car-content-counts']").val(pcount);
+            $($(this).parent()).children("input[class='car-content-tprice']").val(pcount*sprice);
+            calc_total_amount();
+        }
+    });
+    $(".pro-delete").click(function () {      /* ------购物车条目删除--------*/
+        $($(this).parent()).children("input[class='car-content-counts']").val(0);
+        $($(this).parent()).remove();
+    });
+    $(".car-content-check").click(function() {      /* ------选择-------*/
+        calc_total_amount();
+    });
+    $("#shop-car-settle-btn").click(function() {    /* ------购物车结算-------*/
+
+        var total_amounts = Number($("#shop-car-amounts").html());
+        if (total_amounts == 0){
+            alert("请选择要购买的货物");
+            return;
+        }
+        var pro_list=[];
+        var item_list = $(".car-content-items");
+        for (var i=0;i<item_list.length;i++){
+            pro_list.push([[$(item_list[i]).find("input[class='car-content-id']").val(), $(item_list[i]).find("input[class='car-content-counts']").val()]])
+        }
+        $("#side-bar").css("right", "0px");
+        $("#shop-car").hide();
+        settle_car(total_amounts, pro_list);
+    });
+
+    /*-----------------购物车总价计算------------------------*/
+    function calc_total_amount() {
+        var pitems = $(".car-content-items");
+        var total_amount = 0;
+        for (var i=0; i<pitems.length; i++){
+            if ($(pitems[i]).children("input[class='car-content-check']").prop('checked') == false){
+                continue;
+            }
+            var tprice = Number($(pitems[i]).children("input[class='car-content-tprice']").val());
+            total_amount = total_amount + tprice;
+        }
+        $(".car-tail span").html(total_amount);
+    }
+    /* ----------------------下单-----------------------*/
+    function settle_car(total_amounts, pro_list) {
+        $("#settle-amounts").html(total_amounts);
+        $("#settle-amounts").attr("for", total_amounts);
+        $("#settle-list").val(pro_list);
+        $("#total-settle").fadeIn();
+    }
+</script>

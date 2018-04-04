@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-04-03 11:47:26
+Date: 2018-04-04 13:35:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,14 +22,15 @@ DROP TABLE IF EXISTS `t_aboutus`;
 CREATE TABLE `t_aboutus` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL COMMENT '名称',
-  `content` text COMMENT '内容',
+  `content1` text COMMENT '内容',
+  `content2` text,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_aboutus
 -- ----------------------------
-INSERT INTO `t_aboutus` VALUES ('1', '关于我们', '<p><br/></p><table align=\"center\"><tbody><tr class=\"firstRow\"><td rowspan=\"1\" colspan=\"2\" style=\"word-break: break-all; border-width: 1px; border-style: solid; border-color: rgb(255, 255, 255);\" valign=\"top\" align=\"center\"><p><span style=\"font-family: 微软雅黑,Microsoft YaHei; font-size: 24px;\"><img src=\"/ueditor/php/upload/image/20170706/1499329338141310.jpg\" title=\"1499329338141310.jpg\" alt=\"QQ截图20170706162157.jpg\"/><br/></span></p><p><span style=\"font-family: 微软雅黑,Microsoft YaHei; font-size: 24px;\"><br/></span></p><p><br/><span style=\"font-family: 微软雅黑,Microsoft YaHei; font-size: 24px;\"></span></p></td></tr><tr><td style=\"word-break: break-all; border-width: 1px; border-style: solid; border-color: rgb(255, 255, 255);\" width=\"634\" valign=\"top\" align=\"left\"><p style=\"text-indent: 2em; margin-top: 5px; margin-bottom: 5px; line-height: 2em;\"><span style=\"color: rgb(127, 127, 127); font-family: 微软雅黑,Microsoft YaHei; font-size: 14px;\">照升（广州照升网络科技有限公司）是一家致力于（移动）互联网营销技术研发与服务的高新技术企业。目前，我公司拥有六大核心业务，分别是（照升DSP）平台服务、媒体广告运营、搜索优化、社群营销互动创新、品牌策略），为众多的国际及本土电商、金融、汽车、快消行业的客户提供专业的&nbsp; 、多种类的网络营销综合解决方案。同时，我们还针对大数据应用自主研发了基于海量数据云计算&nbsp;&nbsp;&nbsp;&nbsp; 广告发布平台，照升广告效果分析平台、采用分布式存储技术开发的智能广告交易平台等，用于支撑&nbsp;&nbsp;&nbsp;&nbsp; 公司&nbsp;&nbsp; 整体业务运营。经过3年的快速发展已经发展成为国内互联网广告业领军企业之一，获得了陌陌 信息流&nbsp;&nbsp; 最大业绩贡献奖及运营大奖。</span></p><p style=\"text-indent: 2em; margin-top: 5px; margin-bottom: 5px; line-height: 2em;\"><span style=\"color: rgb(127, 127, 127); font-family: 微软雅黑,Microsoft YaHei; font-size: 14px;\">目前在北京、丽水、杭州等地拥有分公司，全国超过300多名雇员，并与地方媒体建立了深度合作关系 。照升和门户、搜索等达成一级代理合作关系，代理四大门户视频，其中的四大搜索，20DSP平台、移动端、网盟等各大效果类平台。我们与中国各领域数百家数字媒体展开合作，并成为一些最主流媒体&nbsp;&nbsp;&nbsp; 的长期重要战略合作伙伴。</span></p><p style=\"text-indent: 2em; margin-top: 5px; margin-bottom: 5px; line-height: 2em;\"><span style=\"color: rgb(127, 127, 127); font-family: 微软雅黑,Microsoft YaHei; font-size: 14px;\">照升瞬网系统（移动互联网资源整合平台）可以分析出用户的生活形态与行为模式，在不同的时间、地&nbsp; 点推送不同的移动广告。照升愿与您探索数字时代的营销新可能。</span></p><br/></td><td style=\"border-width: 1px; border-style: solid; border-color: rgb(255, 255, 255); word-break: break-all;\" width=\"522\" valign=\"top\"><p><img src=\"/ueditor/php/upload/image/20170706/1499329455511174.png\" title=\"1499329455511174.png\" alt=\"company.png\"/></p><p><br/></p></td></tr><tr><td rowspan=\"1\" colspan=\"2\" style=\"word-break: break-all; border-width: 1px; border-style: solid; border-color: rgb(255, 255, 255);\" valign=\"top\"><p><br/></p><p><br/></p><p style=\"text-align:center\"><img src=\"/ueditor/php/upload/image/20170706/1499329487677306.jpg\" title=\"1499329487677306.jpg\" alt=\"QQ截图20170706162426.jpg\"/></p><p style=\"text-align:center\"><img src=\"/ueditor/php/upload/image/20170707/1499392444322019.png\" title=\"1499392444322019.png\" alt=\"ab01.png\"/></p><p><br/></p></td></tr><tr><td rowspan=\"1\" colspan=\"2\" style=\"word-break: break-all; border-width: 1px; border-style: solid; border-color: rgb(255, 255, 255);\" valign=\"top\"><p style=\"text-align:center\"><img src=\"/ueditor/php/upload/image/20170706/1499329556387056.jpg\" title=\"1499329556387056.jpg\" alt=\"QQ截图20170706162525.jpg\"/></p><p style=\"text-align:center\"><img src=\"/ueditor/php/upload/image/20170707/1499392345397770.png\" title=\"1499392345397770.png\" alt=\"ab02.png\"/></p><p><br/></p></td></tr></tbody></table><p><br/></p>');
+INSERT INTO `t_aboutus` VALUES ('1', '关于我们', '菁蕊研发管理团队成立于2003年，在近15年的时间里，专注于女性护肤品的经营与研发，从品牌成立伊始，菁蕊团队所推出的每一款产品，都围绕着女性消费者展开的，从品质保障到完美体验，每一个女性消费者体验后的无限惊喜，成为菁蕊产品壮大的原动力。', '陈莹导师日本回国拜访多年不见的教授，发现教授十几年不见，时间却没有在她的脸上留下任何痕迹，依然如同当初的模样，陈莹导师大为惊奇，再三追问之下才知道教授常年用传统中草药护肤，陈莹导师对此惊叹不已，也对传统的中医药的美肤效果有了全新的认知。为此，陈莹导师放弃国外的大好事业，回国潜心研究，历时三年，终于在传统中医驻颜美肤方面取得了重大的突破。 菁蕊系列是由陈莹导师一手组建的“菁蕊”研究团队推出的首套高端驻颜去皱美肤品，凝聚着团队三年以来潜心研究的心血，植物干细胞技术与传统中草药护肤的完美结合，植物纯天然，用现代技术传承国粹，打造专属国人的高端去皱护肤品牌。');
 
 -- ----------------------------
 -- Table structure for t_admin
@@ -53,7 +54,7 @@ CREATE TABLE `t_admin` (
 -- ----------------------------
 -- Records of t_admin
 -- ----------------------------
-INSERT INTO `t_admin` VALUES ('1', 'admin', '02975a7c26790da131dc054736581585', '4l6mht', '何纯敏', '657951486@qq.com', '15920376750', '1522640454', '127.0.0.1', '0', '1459221200');
+INSERT INTO `t_admin` VALUES ('1', 'admin', '02975a7c26790da131dc054736581585', '4l6mht', '何纯敏', '657951486@qq.com', '15920376750', '1522805115', '127.0.0.1', '0', '1459221200');
 INSERT INTO `t_admin` VALUES ('95', 'test1', '0232da4c9676979ea5f91e38e758d228', 'fp6ij9', '测试1', 'hello1@tom.com', '15899561152', '1498893742', '61.242.42.55', '0', '1498892353');
 
 -- ----------------------------
@@ -424,7 +425,7 @@ CREATE TABLE `t_product` (
   `prodname` varchar(200) NOT NULL DEFAULT '' COMMENT '产品名称',
   `standard` varchar(255) NOT NULL DEFAULT '',
   `price` decimal(8,2) NOT NULL DEFAULT '0.00',
-  `advantage ` varchar(255) NOT NULL DEFAULT '',
+  `advantage` varchar(255) NOT NULL DEFAULT '',
   `usemethod` varchar(255) NOT NULL DEFAULT '',
   `result` varchar(255) NOT NULL DEFAULT '',
   `intro` varchar(200) NOT NULL COMMENT '产品简介',
@@ -433,11 +434,19 @@ CREATE TABLE `t_product` (
   `createtime` int(11) NOT NULL COMMENT '创建时间',
   `sort` smallint(6) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`productid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_product
 -- ----------------------------
+INSERT INTO `t_product` VALUES ('1', '15', '5ac331184f455.jpg', '', '玻尿酸修护补水精华液', '30ml', '400.00', '1.包含植物提取成分 2.稳定性强（独特、纯净的提取技术） 3.纯度高、无需注射（采用医药级别的玻尿酸）', '洁面后以化妆水打底，取适量精华液涂抹面部及颈部，以指腹轻柔拍匀至原液渗透吸收，干性肤质可涂抹两遍。', '补水保湿，淡化细纹，紧致肌肤，改善松弛', '采用医用级别玻尿酸，柔润紧肤，定格青春，还你水润般的肌肤', null, '1', '1522741553', '1');
+INSERT INTO `t_product` VALUES ('2', '15', '5ac332e7bd2f6.jpg', '', '焕颜靓肤紧致精华露', ' 60ml', '588.00', '1.专为亚洲女性研发 2.亦水亦精华，更微小分子、更微细渗透 3.二裂酵母发酵产物精练', '洁面及爽肤后，将化妆棉用精华露沾透，轻拍脸部以及颈部，轻轻按摩至完全吸收。', '促进代谢、保湿滋养、简单皱纹、光滑紧致', '微细深透肌肤，激活修护力，强健防御力，赋活肌肤年轻状态', null, '1', '1522742014', '1');
+INSERT INTO `t_product` VALUES ('3', '15', '5ac333eabbc0a.jpg', '', '干细胞焕颜紧致眼部精华霜', ' 30g', '418.00', '1.苹果干细胞（世界公认安全有效的外用纯植物干细胞） 2.吸收快（蕴含于人类干细胞近似的表观遗传因素， 亲肤强，渗透力强，吸收快） 3.低温冷萃，保证干细胞活性', '洁面后，取适量眼精华平均涂抹在两手无名指上，均匀点涂在整个眼周，轻柔点按眼周肌肤，然后用手指从眼头向太阳穴提拉，直至眼精华完全吸收。', '苹果干细胞精华，减少细纹，改善眼袋，修复熊猫眼', '最新植物干细胞提纯技术，淡化眼纹，提亮眼周', null, '1', '1522742271', '1');
+INSERT INTO `t_product` VALUES ('4', '15', '5ac3343195d8c.jpg', '', '干细胞焕颜亮肤紧致精华霜', ' 50g', '880.00', '1.纯植物提取，自然之力，安全无刺激 2.含有苹果干细胞（世界公认安全有效的外用纯植物干细胞） 3.独特小分子配方，更易吸收', '洁面后去适量精华霜与手掌中，均匀涂抹于脸部或颈部，轻轻拍打，直至完全吸收。', '苹果干细胞精华，紧致肌肤，抗皱抗衰焕颜补水', '最新植物干细胞提纯技术，紧致肌肤去除皱纹', null, '1', '1522742339', '1');
+INSERT INTO `t_product` VALUES ('5', '16', '5ac335277253d.jpg', '', '四件套装', ' 精华露60ml, 眼精华30g, 精华霜50g, 玻尿酸30ml', '1780.00', '菁蕊抗皱超值4件套，四件合一，滋润、补水、淡化、修复，一步到位，一次性解决所有皱纹问题，岁月流逝，你依然美丽。', '解决面部皱纹问题，补水保湿', '去皱套装', '菁蕊抗皱超值4件套，四件合一，滋润、补水、淡化、修复，一步到位，一次性解决所有皱纹问题，岁月流逝，你依然美丽。', null, '1', '1522742586', '1');
+INSERT INTO `t_product` VALUES ('6', '16', '5ac3358c4d597.jpg', '', '眼精华+精华霜+玻尿酸', '眼精华30g, 精华霜50g, 玻尿酸30ml', '1288.00', '菁蕊脸部去皱套装，轻松搞定面部皱纹，焕发青春活力。', '专业解决面部法令纹、鱼尾纹、抬头纹等问题', '去皱套装', '菁蕊脸部去皱套装，轻松搞定面部皱纹，焕发青春活力。', null, '1', '1522742688', '1');
+INSERT INTO `t_product` VALUES ('7', '16', '5ac33663cd81d.jpg', '', '眼精华+玻尿酸', '眼精华30g, 玻尿酸30ml', '800.00', '菁蕊眼部去皱套装，轻松解决眼部皱纹，定格你的美。', '去除眼部皱纹、眼周纹、鱼尾纹。', '去皱套装', '菁蕊眼部去皱套装，轻松解决眼部皱纹，定格你的美。', null, '1', '1522742901', '1');
+INSERT INTO `t_product` VALUES ('8', '16', '5ac33a7114b98.jpg', '', '精华霜+玻尿酸', '精华霜50g, 玻尿酸30ml', '800.00', '菁蕊补水修复套装，淡化细纹，还你紧致肌肤。', '修复面部细纹、淡化干纹。', '去皱套装', '菁蕊补水修复套装，淡化细纹，还你紧致肌肤。', null, '1', '1522742962', '1');
 
 -- ----------------------------
 -- Table structure for t_recruit

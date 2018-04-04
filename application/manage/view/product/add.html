@@ -32,6 +32,12 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
+			<label class="layui-form-label">产品描述</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="intro" lay-verify="" placeholder="请输入产品描述">
+			</div>
+		</div>
+		<div class="layui-form-item">
 			<label class="layui-form-label">产品分类</label>
 			<div class="layui-input-block">
 				<select name="catid" lay-verify="required" class="catid"  lay-search="" placeholder="直接选择或搜索选择">
@@ -40,17 +46,41 @@
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">产品主图</label>
+			<label class="layui-form-label">产品单价</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="price" lay-verify="required" placeholder="请输入产品单价">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品规格</label>
+			<div class="layui-input-block">
+				<input type="text" class="layui-input" name="standard" lay-verify="required" placeholder="请输入产品规格">
+			</div>
+		</div>
+
+		<div class="layui-form-item">
+			<label class="layui-form-label">产品图</label>
 			<div class="layui-input-block">
 				<input type="file" class="layui-upload-file"  name="img"   placeholder="网站logo">
 				<span id="sourceimg"></span>
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">产品附图</label>
+			<label class="layui-form-label">优势</label>
 			<div class="layui-input-block">
-				<input type="file" class="layui-upload-file"  name="att"   placeholder="网站logo">
-				<span id="images"></span>
+				<textarea placeholder="请输入优势"  name="advantage" class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">使用方法</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入使用方法"  name="usemethod" class="layui-textarea"></textarea>
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<label class="layui-form-label">效果</label>
+			<div class="layui-input-block">
+				<textarea placeholder="请输入效果"  name="result" class="layui-textarea"></textarea>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -65,18 +95,7 @@
 				<input type="checkbox" name="isshow"  title="上架" checked>
 			</div>
 		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">产品简介</label>
-			<div class="layui-input-block">
-				<textarea placeholder="请输入产品描述"  name="intro" class="layui-textarea"></textarea>
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">产品详情</label>
-			<div class="layui-input-block">
-				<script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
-			</div>
-		</div>
+
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<input type="hidden" class="sourceimg"  name="sourceimg"   value="">

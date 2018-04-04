@@ -6,12 +6,9 @@
  * Desc: 留言管理控制器
  */
 namespace app\manage\controller;
-
-
 use think\Controller;
 use think\Validate;
 use app\common\model\Message as messageModel;
-
 
 class Message extends Base{
     /**
@@ -56,7 +53,6 @@ class Message extends Base{
             //验证不通过
             $this->_error($validate->getError());
         }
-
 
         $Data=array(
             'message_status'=>$postData['status'],

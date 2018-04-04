@@ -37,7 +37,8 @@ class Aboutus extends Base{
 //        pr($postData);die;
         $rule = [
             ['title','require','标题!'],
-            ['content','require','内容!'],
+            ['content1','require','About Us'],
+            ['content2','require','Our Story'],
         ];
         $validate = new Validate($rule);
         if(!$validate->check($postData)){
@@ -47,7 +48,8 @@ class Aboutus extends Base{
 
         $Data=array(
             'title'=>$postData['title'],
-            'content' =>$postData['content'],
+            'content1' =>$postData['content1'],
+            'content2' =>$postData['content2'],
         );
 
        if($this->aboutusModel->update($Data,['id'=>$postData['id']])){

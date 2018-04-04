@@ -1,154 +1,288 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-<title>{$basic.webname}-首页</title>
-<link rel="stylesheet" rev="stylesheet" href="__INDEX__css/base.css" type="text/css" />
-<link rel="stylesheet" rev="stylesheet" href="__INDEX__css/index.css" type="text/css" />
-<script type="text/javascript" src="__INDEX__js/jquery.min.js"></script>
-</head>
-<body>
-{include file="public/head" /}
 
-<div id="banner_tabs" class="flexslider">
-        <ul class="slides">
-            {foreach $banner as $v}
-            <li>
-                <a title="" target="_blank" href="{:url($indexData.ad_url)}">
-                    <img width="1920" height="482" alt="" style="background: url(__PUBLIC__upload/manage/ad/{$v}) no-repeat center;" src="__INDEX__images/alpha.png">
-                </a>
-            </li>
-            {/foreach}
-        </ul>
-        <ul class="flex-direction-nav">
-            <li><a class="flex-prev" href="javascript:;">Previous</a></li>
-            <li><a class="flex-next" href="javascript:;">Next</a></li>
-        </ul>
-        <ol id="bannerCtrl" class="flex-control-nav flex-control-paging">
-            {foreach $banner as $k => $v}
-            <li><a>{$k+1}</a></li>
-            {/foreach}
-        </ol>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <title>菁蕊</title>
+    <link rel="shortcut icon" href="__INDEX__images/favicon.ico">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="__INDEX__css/animate.min.css">
+    <link rel="stylesheet" href="__INDEX__css/font-awesome.min.css">
+    <link rel="stylesheet" href="__INDEX__css/component.css">
+    <link rel="stylesheet" href="__INDEX__css/owl.theme.css">
+    <link rel="stylesheet" href="__INDEX__css/owl.carousel.css">
+    <link rel="stylesheet" href="__INDEX__css/style.css">
+
+    <style type="text/css">
+        #knowledge {
+            background-image: url("__INDEX__/images/about_back_ground.jpg");
+            background-size:cover;
+        }
+        #promise{
+            background-image: url("__INDEX__/images/promise.jpg");
+            background-size:cover;
+        }
+        footer {
+            background-image: url("__INDEX__/images/footer_back_ground.jpg");
+            background-size:cover;
+        }
+    </style>
+</head>
+<body id="top" data-spy="scroll" data-offset="50" data-target=".navbar-collapse">
+
+<!-- Preloader section -->
+
+<div class="preloader">
+    <div class="sk-spinner sk-spinner-pulse"></div>
+</div>
+
+<!-- Navigation section  -->
+<div id="main-top" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container" >
+        <div class="logo"><img src="__PUBLIC__upload/manage/{$arrSetting.logo}" alt=""></div>
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+                <span class="icon icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#top" class="smoothScroll"><span>首页</span></a></li>
+                <li><a href="#about" class="smoothScroll"><span>关于我们</span></a></li>
+                <li><a href="#product_single" class="smoothScroll"><span>精美单品</span></a></li>
+                <li><a href="#product_suit" class="smoothScroll"><span>优选套装</span></a></li>
+                <li><a href="#promise" class="smoothScroll"><span>正品保障</span></a></li>
+                <li><a href="#knowledge" class="smoothScroll"><span>美容课堂</span></a></li>
+                <li><a href="#contact" class="smoothScroll"><span>联系我们</span></a></li>
+            </ul>
+        </div>
     </div>
-<!--产品服务-->
-<div class="wh clear">
-  <div class="pro_title">
-    	<h2>产品服务</h2>
-        <p>Service</p>
-      <i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
+</div>
+
+
+<!-- Home section -->
+<section id="home">
+    <div class="top-img">
+        <div class="activeimg">
+            {if $arrBanner}
+                {foreach $arrBanner as $key =>$value}
+                    <img class="slideimg" src="__PUBLIC__upload/manage/{$value.bannerimg}">
+                {/foreach}
+            {/if}
+        </div>
     </div>
-    <ul class="pro_ul wh fn-left">
-        {foreach $cateData as $k =>$v}
-        {if $k<4}
-        <li>
-            <div class="pro_txt">
-                <h2>{$v.catname}<i class="line"></i></h2>
-                <p>{$v.intro}<a class="red" href="{:url('product/index','catid='.$v.catid)}">[更多]</a></p>
-                <span><a class="cor" href="{:url('product/index','catid='.$v.catid)}">点击<br />咨询</a></span>
+</section>
+
+<!-- About section -->
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="section-title text-center">
+                    <h1 style="letter-spacing: 8px;font-family: '-webkit-pictograph';">about us</h1>
+                    <p>{$aboutusData->content1}</p>
+                </div>
             </div>
-        </li>
-        {/if}
-        {/foreach}
-    </ul>
-</div>
-<!--四大优势-->
-<div class="four_ys clear">
-	<div class="wh">
-    	<div class="pro_title">
-    		<h2>四大优势</h2>
-        	<p>Advantages</p>
-      		<i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
-    	</div>
-        <ul class="four_ul">
-        	<li id="fast">
-            	<span class="ico1"><i></i></span>
-                <b>开户快</b>
-                <p>资质齐全，最快当天下户，长期稳定投放。</p>
-            </li>
-            <li id="good">
-            	<span class="ico2"><i></i></span>
-                <b>政策好</b>
-                <p>厂商关系牢固，掌握厂商最新政策，点数优势明显。</p>
-            </li>
-            <li id="weight">
-            	<span class="ico3"><i></i></span>
-                <b>重运营</b>
-                <p>强大的运营团队，精通各平台产品运营，以ROI为导向。</p>
-            </li>
-            <li class="mrg" id="height">
-            	<span class="ico4"><i></i></span>
-                <b>高转化</b>
-                <p>效果转化明显，客户生命周期长，客情黏性高。</p>
-            </li>
-        </ul>
+            <div class="col-md-9 col-sm-8 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="about-thumb">
+                    <h1>我们的故事  Our Story</h1>
+                    <p>
+                        {$aboutusData->content2}
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-4 wow fadeInUp about-img" data-wow-delay="0.3s">
+                <img src="__INDEX__/images/about-img.jpg" class="img-responsive img-circle" alt="About">
+            </div>
+            <!-- end team carousel -->
+        </div>
     </div>
-</div>
-<!--合作伙伴-->
-<div class="Partner_box">
-	<div class="wh">
-    	<div class="Partner_title">
-    		<h2>合作伙伴</h2>
-        	<p>PARTNER</p>
-      		<i><img src="__INDEX__images/bl.png" width="117" height="5" alt=""/></i>
-    	</div>
-        <div class="friend-Link">
-    <div class="left-arrow"><a>左边箭头</a></div>
-    <div class="fl-pic">
-      <ul>
-        <!-- 图片合作伙伴 -->
-          {foreach $friendlink as $k2 =>$v2}
-          <li>
-              <a  href="{$v2.url}"><img src="__PUBLIC__upload/manage/{$v2.logo}" alt="" width="160" height="80" /><div class="pic_c">{$v2.webname}</div></a>
-          </li>
-          {/foreach}
-      </ul>
+</section>
+
+<!-- product section -->
+<section id="product_single">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="section-title text-center">
+                    <h1>精美单品</h1>
+                    <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3>
+                </div>
+            </div>
+            <!-- team carousel -->
+            <div id="team-carousel" class="owl-carousel">
+
+                {if $productData1}
+                    {foreach $productData1 as $key =>$value}
+                        <div class="item col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                            <div class="team-thumb">
+                                <div class="image-holder">
+                                    <img src="__PUBLIC__upload/manage/product/{$value.productid}/400/{$value.sourceimg}" class="img-responsive img-circle" alt="">
+                                </div>
+                                <h2 class="heading">{$value.prodname}</h2>
+                                <p class="description">{$value.intro}</p>
+                                <span class="description" data-wow-delay="0.1s"><a href='{:url("index/product")}?id={$value.productid}' style="font-weight:bold;">立即购买</a></span>
+                            </div>
+                        </div>
+                    {/foreach}
+                {/if}
+
+
+
+            </div>
+        </div>
     </div>
-    <div class="right-arrow"><a>右边箭头</a></div>
-  </div>
+</section>
+
+<!-- product section -->
+<section id="product_suit">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="section-title">
+                    <h1>优选套装</h1>
+                    <p>Nullam scelerisque, quam nec iaculis vulputate, arcu ligula sollicitudin nisl, ac volutpat erat nulla a arcu.</p>
+                </div>
+            </div>
+            <ul class="grid cs-style-4">
+
+                {if $productData2}
+                    {foreach $productData2 as $key =>$value}
+                        <li class="col-md-6 col-sm-6">
+                            <figure>
+                                <div><img src="__PUBLIC__upload/manage/product/{$value.productid}/{$value.sourceimg}" alt=""></div>
+                                <figcaption>
+                                    <h1>{$value.prodname}</h1>
+                                    <small>{$value.intro}</small>
+                                    <a href='{:url("index/product")}?id={$value.productid}'>立即购买</a>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    {/foreach}
+                {/if}
+
+
+
+
+
+            </ul>
+        </div>
     </div>
-</div>
+</section>
+
+<!-- 护肤抗皱基本原则 section -->
+<section id="skincare">
+    <img src="__INDEX__/images/skinrule.jpg" alt="">
+</section>
+
+<section id="promise">
+    <div class="container">
+        <!-- team carousel -->
+        <div id="team-carousel" class="owl-carousel">
+            <div class="item col-md-3 col-sm-8 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="icon-items"><img class="ensure" src="__INDEX__/images/ensure1.png"></div>
+            </div>
+            <div class="item col-md-3 col-sm-8 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="icon-items"><img class="ensure" src="__INDEX__/images/ensure2.png"></div>
+            </div>
+            <div class="item col-md-3 col-sm-8 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="icon-items"><img class="ensure" src="__INDEX__/images/ensure3.png"></div>
+            </div>
+            <div class="item col-md-3 col-sm-8 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="icon-items"><img class="ensure" src="__INDEX__/images/ensure4.png"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 护肤知识 section -->
+<section id="knowledge">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8 col-sm-12 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="section-title">
+                    <h1>护肤知识</h1>
+                    <p>干细胞是未成熟细胞，它未充分分化，具有再生各种组织器官和人体的潜在功能，医学界称为“万用细胞”，就好比是体内的“维修工”，有极强的修复和再生能力，人体能够生成的干细胞很少，而动物体内的干细胞都自带病菌，不安全，多用于医学，可用于外用的非常稀少，研发团队历时三年，终于克服看重重困难，取得重大突破，从苹果中提取出苹果干细胞，可以激活人体休眠细胞，修复受损细胞，具有抗老化及延长细胞寿命的美容奇效，从植物中提取，纯天然，植物小分子，更易被皮肤吸收。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 <!--底部导航列表-->
 {include file="public/foot" /}
 
+<div id="communicate" style="display: none;">
+    <a href="tel:020-87600109" class="call-to-us"><i class="fa fa-phone"></i></a>
+    <a href="#contact" class="message-to-us"><i class="fa fa-edit"></i></a>
+</div>
+<div class="copyrights">{$arrSetting.webname}</div>
+
 </body>
-<script type="text/javascript" src="__INDEX__js/slidelf.js"></script>
+<!-- Javascript  -->
+<!--
+<script src="__INDEX__/js/jquery.js"></script>
+-->
+<script src="__INDEX__/js/jquery.min.js"></script>
+<!--<script src="__INDEX__/js/bootstrap.min.js"></script>        -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="__INDEX__/js/modernizr.custom.js"></script>
+<script src="__INDEX__/js/toucheffects.js"></script>
+<script src="__INDEX__/js/owl.carousel.min.js"></script>
+<script src="__INDEX__/js/smoothscroll.js"></script>
+<script src="__INDEX__/js/wow.min.js"></script>
+<script src="__INDEX__/js/custom.js"></script>
 <script type="text/javascript">
-$(function(){
-	$(".fl-pic").slidelf({
-		"prev":"left-arrow",
-		"next":"right-arrow",
-		"speed":1000
-	});
-});
-</script>
-<script src="__INDEX__js/slider.js"></script>
-	<script type="text/javascript">
-    $(function() {
-        var bannerSlider = new Slider($('#banner_tabs'), {
-            time: 5000,
-            delay: 400,
-            event: 'hover',
-            auto: true,
-            mode: 'fade',
-            controller: $('#bannerCtrl'),
-            activeControllerCls: 'active'
+    var img_width = get_width();
+    $(window).resize(function() {
+        img_width = get_width();
+        set_width();
+    });
+
+    function get_width(){
+        var img_width = document.getElementById("home").offsetWidth;
+        return img_width;
+    }
+    function set_width(list){
+        var list=$('.slideimg').length;
+        $(".top-img").css({
+            height: $("#home").css("height") - 52,
         });
-        $('#banner_tabs .flex-prev').click(function() {
-            bannerSlider.prev()
+        $('.activeimg').css({
+            width:list*img_width,
+            height: $("#home").css("height") - 52,
         });
-        $('#banner_tabs .flex-next').click(function() {
-            bannerSlider.next()
+        $('.activeimg img').css({
+            width: img_width,
         });
-    })
-    </script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#nav li").hover(function(){
-		$(this).find("div").slideDown("slow");	
-	},function(){
-		$(this).find("div").slideUp("fast");	
-	});
-});
+    }
+    $(function(){
+        $('.bot-img ul li').click(function(){
+            var _this=$(this);
+            _this.addClass('active').siblings('li').removeClass('active');
+            var int=_this.index();
+            $('.activeimg').animate({left:int*-img_width},"slow");
+        });
+        set_width();
+
+        var list=$('.slideimg').length; //获取幻灯片数量
+        var num=0;
+
+        var timer=setInterval(function(){ //定时器开始
+            num++;
+            if(num>parseFloat(list)-1){
+                num=0;
+            }
+            $('.activeimg').animate({left:num*-img_width},"slow");
+        }, 3000);
+    });
 </script>
 </html>
