@@ -11,19 +11,22 @@
     <div class="car-head-tprice"><span>总价</span></div>
 </div>
 <div class="car-content">
+    {if $cartData}
+        {foreach $cartData as $key =>$value}
+            <div class="car-content-items" id="pro-id">
+                <input type="checkbox" class="car-content-check">
+                <input type="hidden" class="car-content-id" value="{$value.productid}">
+                <span class="car-content-name">{$value.prodname}</span>
+                <input type="number" class="car-content-sprice" value="{$value.price}" readonly="true">
+                <span class="counts-change-minus">-</span>
+                <input type="number" class="car-content-counts" value="{$value.qty}" readonly="true">
+                <span class="counts-change-plus">+</span>
+                <input type="number" class="car-content-tprice" value="{$value.sum}" readonly="true">
+                <span class="pro-delete">x</span>
+            </div>
 
-    <div class="car-content-items" id="pro-id">
-        <input type="checkbox" class="car-content-check">
-        <input type="hidden" class="car-content-id" value="100001">
-        <span class="car-content-name">玻尿酸修护补水精华液</span>
-        <input type="number" class="car-content-sprice" value="400" readonly="true">
-        <span class="counts-change-minus">-</span>
-        <input type="number" class="car-content-counts" value="4" readonly="true">
-        <span class="counts-change-plus">+</span>
-        <input type="number" class="car-content-tprice" value="1600" readonly="true">
-        <span class="pro-delete">x</span>
-    </div>
-
+        {/foreach}
+    {/if}
 </div>
 
 
@@ -89,10 +92,11 @@
             alert("请选择要购买的货物");
             return;
         }
-        var pro_list=[];
+        var pro_list= '';
         var item_list = $(".car-content-items");
         for (var i=0;i<item_list.length;i++){
-            pro_list.push([[$(item_list[i]).find("input[class='car-content-id']").val(), $(item_list[i]).find("input[class='car-content-counts']").val()]])
+            pro_list +=$(item_list[i]).find("input[class='car-content-id']").val()+','+$(item_list[i]).find("input[class='car-content-counts']").val()+';';
+
         }
         $("#side-bar").css("right", "0px");
         $("#shop-car").hide();

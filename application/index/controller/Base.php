@@ -88,6 +88,15 @@ class Base extends Controller{
     }
 
     /**
+     * @param $url 提示不跳转
+     */
+    function page_alter($msg){
+        echo "<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />";
+        echo '<script>alert("'.$msg.'");</script>';
+        exit;
+    }
+
+    /**
      * 编辑器上传图片
      */
     public function uploadimg(){

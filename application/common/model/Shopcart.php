@@ -18,7 +18,7 @@ class Shopcart extends Base{
      */
     public function getCart(){
 
-        $cartData = isset($_SESSION['home']['cart'])?$_SESSION['home']['cart']:array();//购物车
+        $cartData = session('cart');//购物车
 
         return $cartData;
     }
@@ -28,7 +28,7 @@ class Shopcart extends Base{
      */
     public function getCheckOutCart(){
 
-        $noLoginCartData = isset($_SESSION['home']['cart'])?$_SESSION['home']['cart']:array();//购物车
+        $noLoginCartData = $this->getCart();//购物车
         if($noLoginCartData){
             foreach($noLoginCartData as $val){
                 if($val['ischeck']==1){
@@ -62,10 +62,14 @@ class Shopcart extends Base{
      */
     public function check($arrProductId,$flag){
 
+        $cartData = $this->getCart();
+
         if($arrProductId){
             foreach($arrProductId as $val){
-                $_SESSION['home']['cart'][$val]['ischeck'] = $flag;
+
+                $cartData[$val]['ischeck'] = $flag;
             }
+            session('cart',$cartData);
             return true;
         }else{
             return false;
@@ -139,8 +143,7 @@ class Shopcart extends Base{
             );
 
         }
-        $_SESSION['home']['cart'] = $cart;
-
+        session('cart',$cart);
         return true;
     }
 
@@ -154,7 +157,7 @@ class Shopcart extends Base{
             //修改购物车中
             $cart[$productid]['qty'] = $qty;
         }
-        $_SESSION['home']['cart'] = $cart;
+        session('cart',$cart);
         return true;
     }
 
@@ -171,7 +174,7 @@ class Shopcart extends Base{
             }
 
         }
-        $_SESSION['home']['cart'] = $cart;
+        session('cart',$cart);
         return true;
 
     }
@@ -182,8 +185,8 @@ class Shopcart extends Base{
      * 清空购物车
      */
     public function clearCart(){
-        
-        $_SESSION['home']['cart'] = array();
+
+        session('cart',null);
         return true;
     }
 }

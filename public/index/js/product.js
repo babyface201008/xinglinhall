@@ -37,12 +37,12 @@ $(document).ready(function() {
     });
     /*--------------加入购物车----------------*/
     $("#add-car").click(function () {
-        var pro_list = $("#pid").val() + ',' + $("#pcounts").val() + ";";
+        var pro_list = $("#pid").val() + ',' + $("#pcounts").val()+';';
         add_shop_car(pro_list, 'a', true);
     });
     function add_shop_car(pro_list, flag, is_tips) {
         $.ajax({
-            url:shopcart_url,
+            url:addcart_url,
             type:"POST",
             data:{
                 "pro_list": pro_list,
@@ -117,7 +117,7 @@ $(document).ready(function() {
             return;
         }
         $.ajax({
-            url:"/place_order/",
+            url:place_order_url,
             type:"POST",
             data:{
                 "pro_list": $("#settle-list").val(),
@@ -150,7 +150,7 @@ $(document).ready(function() {
     function open_shop_car() {
         if ($("#side-bar").css("right") == "0px") {
             $.ajax({
-                url:addcart_url,
+                url:shopcart_url,
                 type:"get",
                 success:function success(data) {
                     $("#shop-car").html(data);
