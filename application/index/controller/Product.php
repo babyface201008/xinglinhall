@@ -76,7 +76,6 @@ class Product extends Base{
     //下订单
     public function place_order(){
 
-
         $pro_list = input('post.pro_list');
         $name = input('post.name');
         $sex = input('post.sex');
@@ -115,6 +114,7 @@ class Product extends Base{
                     'orderno'=>$orderno,
                     'productid'=>$val[0],
                     'prodname'=>$productData['prodname'],
+                    'standard'=>$productData['standard'],
                     'qty'=>$val[1],
                     'price'=>$productData['price'],
                     'amount'=>round($val[1]*$productData['price'],2)
@@ -153,20 +153,19 @@ class Product extends Base{
 
             //添加订单表
             $this->orderModel->data($order)->save();
-
             //添加订详情表
             $this->orderDetailModel->saveAll($orderDetail);
 
             //提交事务
             Db::commit();
 
-            $this->page_alter('下单成功！');
+            $this->_data1('订单提交成功！');
         } catch (\Exception $e) {
 
             //回滚事务
             Db::rollback();
 
-            $this->page_alter('下单失败！');
+            $this->_data1('下单失败！');
         }
     }
 
@@ -177,17 +176,8 @@ class Product extends Base{
      */
     public function getSerialNumber(){
 
-        $prefix = '2';
-        $today_start = strtotime(date('Ymd').' 00:00:00');
-        $today_end = strtotime(date('Ymd').' 24:00:00');
-
-        //获取今天订单数量
-        $todayCount = $this->orderModel->where("createtime<={$today_end} and createtime>={$today_start}")->count();
-        $todayCount = $todayCount +1;
-
-        //$number = date('Ymd')*100000+$todayCount;
-        $number = time()*100000+$todayCount;
-        return $prefix.$number;
+        $number =  date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+        return $number;
 
     }
 

@@ -63,7 +63,7 @@ var navs = [{
 			{
 				"title" : "订单信息",
 				"icon" : "icon-guanli1",
-				"href" :  menu_url+'solutiontype/index',
+				"href" :  menu_url+'order/index',
 				"spread" : false
 			}
 		]

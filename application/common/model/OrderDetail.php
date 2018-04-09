@@ -15,4 +15,14 @@ class OrderDetail extends Base{
     protected $table = 't_order_detail';
 
 
+    /**
+     * 根据订单号获取订单明细
+     */
+    public function getOrderProduct($orderno){
+
+        if(empty($orderno)) return false;
+
+        $list = $this->field('a.*,b.sourceimg')->alias('a')->join('t_product b ','b.productid= a.productid','Left')->where('a.orderno',$orderno)->select()->toArray();
+        return $list;
+    }
 }

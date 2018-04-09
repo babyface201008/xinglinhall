@@ -1,0 +1,131 @@
+<link rel="stylesheet" href="__MANAGE__layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="//at.alicdn.com/t/font_eolqem241z66flxr.css" media="all" />
+<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="__MANAGE__js/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+</head>
+<style>
+	.label_title{font-weight: bold}
+	.layui-form-item{border: 1px solid rgb(226, 226, 226)}
+</style>
+<body class="childrenBody" style="height: 100%">
+<form class="layui-form" style="width:80%;height: 100%" enctype="multipart/form-data" method="post">
+
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >订单号</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.orderno}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >收件人</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.name}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >性别</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.sex}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >电话</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.phone}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >地址</label>
+		<label class="layui-form-label" style="width: auto">
+			{$orderData.area}{$orderData.address}
+		</label>
+	</div>
+
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >支付方式</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.payname}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >下单时间</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.createtime}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title">付款时间</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.paytime}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title">状态</label>
+		<label class="layui-form-label"  style="width: auto; color: red">
+			{$orderData.statusname}
+		</label>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label label_title" >留言</label>
+		<label class="layui-form-label"  style="width: auto">
+			{$orderData.message}
+		</label>
+	</div>
+
+	<table class="layui-table">
+		<colgroup>
+			<col width="150">
+			<col width="150">
+			<col width="200">
+			<col>
+		</colgroup>
+		<thead>
+		<tr>
+			<th>产品名称</th>
+			<th>规格</th>
+			<th>数量</th>
+			<th>单价</th>
+			<th>小计</th>
+		</tr>
+		</thead>
+		<tbody>
+		{if $orderDetail}
+			{foreach $orderDetail as $vo}
+			<tr>
+				<td>{$vo.prodname}</td>
+				<td>{$vo.standard}</td>
+				<td>{$vo.qty}</td>
+				<td>{$vo.price}元</td>
+				<td>{$vo.amount}元</td>
+			</tr>
+			{/foreach}
+		<tr>
+			<td colspan="4" style="color: red; text-align: right">总计：</td>
+			<td  align="left" style="color: red">{$orderData.totalamount}元</td>
+		</tr>
+
+		{/if}
+		</tbody>
+	</table>
+
+</form>
+<script>
+    var UPLOAD_URL='{:url("product/uploadimg")}'
+    var layedit_UPLOAD_URL='{:url("base/uploadimg")}'
+    var index_URL='{:url("product/index")}'
+    var ProductSave_URL='{:url("product/save")}'
+    var delimg_URL='{:url("product/delimg")}'
+    var LOGO_URL='__PUBLIC__'+'upload/product/'
+    var getCategoryListURL='{:url("category/getCategoryListJson")}'
+</script>
+<script type="text/javascript">
+	//实例化编辑器
+	//建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+	var ue = UE.getEditor('editor',{
+		textarea : 'product_desc'
+	});
+</script>
+<script src="__MANAGE__js/plugins/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="__MANAGE__layui/layui.js"></script>
+<script type="text/javascript" src="__MANAGE__js/admin/productAdd.js"></script>
